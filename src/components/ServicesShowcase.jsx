@@ -91,29 +91,6 @@ const ServicesShowcase = () => {
             )
           })}
         </div>
-
-        {/* CTA Button */}
-        <div className="text-center">
-          <a
-            href="#services"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
-          >
-            Explore All Services
-            <svg 
-              className="w-5 h-5" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M9 5l7 7-7 7" 
-              />
-            </svg>
-          </a>
-        </div>
       </div>
     </section>
   )

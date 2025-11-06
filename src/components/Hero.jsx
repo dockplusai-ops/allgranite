@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, X } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
 
 const Hero = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const location = useLocation()
+  const isPortfolioPage = location.pathname === '/portfolio'
+  
+  // Helper function to create links that work on both pages
+  const createLink = (hash) => {
+    if (isPortfolioPage) {
+      // If on portfolio page, go to home first then scroll to section
+      return `/${hash}`
+    }
+    // If on home page, use hash directly
+    return hash
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,35 +60,35 @@ const Hero = () => {
             : 'bg-transparent'
         }`}
       >
-        <nav className="container mx-auto px-4 lg:px-8 py-4">
+        <nav className="container mx-auto px-4 lg:px-8 py-0">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="relative w-48 h-48 lg:w-64 lg:h-64 flex-shrink-0">
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="relative w-28 h-28 lg:w-36 lg:h-36 flex-shrink-0 -my-4">
                 <img 
                   src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762217425/Lucid_Realism_Highend_3D_logo_design_isolated_on_transparent_b_0-removebg-preview_n87fhr.png"
                   alt="All Granite & Stone Logo"
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className={`font-display text-xl lg:text-2xl font-bold transition-colors duration-300 ${
+              <span className={`font-display text-base lg:text-lg font-bold transition-colors duration-300 ${
                 isScrolled ? 'text-navy lg:text-white' : 'text-white'
               }`}>
                 All Granite & Stone
               </span>
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               <a href="tel:7742077924" className="text-cream hover:text-gold transition-colors font-body font-medium">
                 Phone
               </a>
-              <a href="#showroom" className="text-cream hover:text-gold transition-colors font-body font-medium">
+              <Link to={createLink('#showroom')} className="text-cream hover:text-gold transition-colors font-body font-medium">
                 Showroom
-              </a>
-              <a href="#quote" className="text-cream hover:text-gold transition-colors font-body font-medium">
+              </Link>
+              <Link to={createLink('#quote')} className="text-cream hover:text-gold transition-colors font-body font-medium">
                 Get Quote
-              </a>
+              </Link>
             </div>
 
             {/* Mobile Hamburger Menu Button */}
@@ -136,40 +149,40 @@ const Hero = () => {
                 <nav className="flex-1 px-6 py-4">
                   <ul className="space-y-2">
                     <li>
-                      <a
-                        href="#home"
+                      <Link
+                        to={createLink('#home')}
                         className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Home
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#services"
+                      <Link
+                        to={createLink('#services')}
                         className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Services
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#gallery"
+                      <Link
+                        to="/portfolio"
                         className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        Gallery
-                      </a>
+                        Portfolio
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#contact"
+                      <Link
+                        to={createLink('#contact')}
                         className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Contact
-                      </a>
+                      </Link>
                     </li>
                     <li className="pt-4 border-t border-gray-200">
                       <a
@@ -182,13 +195,13 @@ const Hero = () => {
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#quote"
+                      <Link
+                        to={createLink('#quote')}
                         className="flex items-center gap-2 py-3 px-4 border-2 border-gold text-gold font-body font-bold rounded-lg hover:bg-gold hover:text-navy transition-all duration-300 mt-2"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Get Quote
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </nav>
@@ -201,7 +214,7 @@ const Hero = () => {
       {/* Hero Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Spacer for fixed header */}
-        <div className="h-24 lg:h-28"></div>
+        <div className="h-12 lg:h-14"></div>
 
         {/* Main Content - Centered */}
         <div className="flex-1 flex items-center justify-center px-4 lg:px-8">
@@ -224,18 +237,18 @@ const Hero = () => {
               >
                 Call Now: (774) 207-7924
               </a>
-              <a
-                href="#quote"
+              <Link
+                to={createLink('#quote')}
                 className="w-full sm:w-auto px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Get Free Quote
-              </a>
-              <a
-                href="#showroom"
+              </Link>
+              <Link
+                to={createLink('#showroom')}
                 className="w-full sm:w-auto px-8 py-4 border-2 border-gold text-gold font-body font-semibold text-lg rounded-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105"
               >
                 Visit Showroom
-              </a>
+              </Link>
             </div>
 
             {/* Trust Badges */}

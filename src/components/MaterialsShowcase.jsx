@@ -9,7 +9,7 @@ const MaterialsShowcase = () => {
       description: 'Timeless durability',
       durability: 5,
       price: '$$$',
-      image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762377845/granite-textures-seamless_fuyzfe.jpg',
       fullDescription: 'Naturally resistant to heat, scratches, and stains. Perfect for busy kitchens.'
     },
     {
@@ -17,7 +17,7 @@ const MaterialsShowcase = () => {
       description: 'Elegant luxury',
       durability: 3,
       price: '$$$$',
-      image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762377845/marble_Calacatta-Borghini_LHOcwv5aOZW3cKeSct8X_bwmwcm.jpg',
       fullDescription: 'Sophisticated beauty with unique veining patterns. Requires careful maintenance.'
     },
     {
@@ -41,7 +41,7 @@ const MaterialsShowcase = () => {
       description: 'Unique character',
       durability: 4,
       price: '$$',
-      image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762377845/soapstone_Barroca-Soapstone_2LTP16AfN4Rk3ZR4J6fQ_icnncq.jpg',
       fullDescription: 'Natural, non-porous surface that develops a rich patina over time.'
     }
   ]
@@ -110,19 +110,21 @@ const MaterialsShowcase = () => {
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.5 }}
                 />
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/60 to-navy/40 group-hover:from-navy/95 group-hover:via-navy/70 group-hover:to-navy/50 transition-all duration-300" />
+                {/* Dark Overlay - Top portion */}
+                <div className="absolute top-0 left-0 right-0 h-2/5 bg-gradient-to-b from-navy/90 via-navy/60 to-transparent transition-all duration-300" />
+                {/* Dark Overlay - Bottom portion */}
+                <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-navy/90 via-navy/60 to-transparent transition-all duration-300" />
               </div>
 
               {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8 text-white">
-                {/* Top Section */}
-                <div className="flex justify-between items-start">
+              <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
+                {/* Top Section - No overlay, white text for better readability */}
+                <div className="flex justify-between items-start relative z-10">
                   <div>
-                    <h3 className="text-3xl md:text-4xl font-display font-bold mb-2 group-hover:text-gold transition-colors duration-300">
+                    <h3 className="text-3xl md:text-4xl font-display font-bold mb-2 text-white group-hover:text-gold transition-colors duration-300">
                       {material.name}
                     </h3>
-                    <p className="text-lg md:text-xl text-cream font-body font-light mb-4">
+                    <p className="text-lg md:text-xl text-white font-body font-medium mb-4">
                       {material.description}
                     </p>
                   </div>
@@ -132,8 +134,8 @@ const MaterialsShowcase = () => {
                   </div>
                 </div>
 
-                {/* Bottom Section */}
-                <div>
+                {/* Bottom Section - With overlay */}
+                <div className="relative z-10 text-white">
                   {/* Durability Rating */}
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-sm font-body text-cream/80">Durability:</span>
@@ -143,19 +145,9 @@ const MaterialsShowcase = () => {
                   </div>
 
                   {/* Full Description */}
-                  <p className="text-sm md:text-base text-cream/90 font-body mb-6 leading-relaxed">
+                  <p className="text-sm md:text-base text-cream/90 font-body leading-relaxed">
                     {material.fullDescription}
                   </p>
-
-                  {/* Learn More Link */}
-                  <motion.a
-                    href={`#${material.name.toLowerCase()}`}
-                    className="inline-flex items-center gap-2 text-gold font-body font-semibold text-sm md:text-base group-hover:gap-3 transition-all duration-300"
-                    whileHover={{ x: 5 }}
-                  >
-                    Learn More
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.a>
                 </div>
               </div>
 

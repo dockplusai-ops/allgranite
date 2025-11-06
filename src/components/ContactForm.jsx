@@ -55,7 +55,7 @@ const ContactForm = () => {
   ]
 
   return (
-    <section className="w-full py-16 md:py-20 px-4 lg:px-8 bg-cream">
+    <section id="quote" className="w-full py-16 md:py-20 px-4 lg:px-8 bg-cream scroll-mt-20 lg:scroll-mt-24">
       <div className="max-w-3xl mx-auto">
         {/* Section Title */}
         <motion.div
