@@ -9,6 +9,20 @@ const Hero = () => {
   const location = useLocation()
   const isPortfolioPage = location.pathname === '/portfolio'
   
+  // Helper function to handle navigation and scroll
+  const handleSectionClick = (hash) => {
+    if (isPortfolioPage) {
+      // If on portfolio page, navigate to home first
+      window.location.href = `/${hash}`
+    } else {
+      // If on home page, scroll to section
+      const element = document.querySelector(hash)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+  }
+
   // Helper function to create links that work on both pages
   const createLink = (hash) => {
     if (isPortfolioPage) {
@@ -83,12 +97,18 @@ const Hero = () => {
               <a href="tel:7742077924" className="text-cream hover:text-gold transition-colors font-body font-medium">
                 Phone
               </a>
-              <Link to={createLink('#showroom')} className="text-cream hover:text-gold transition-colors font-body font-medium">
+              <button 
+                onClick={() => handleSectionClick('#showroom')} 
+                className="text-cream hover:text-gold transition-colors font-body font-medium"
+              >
                 Showroom
-              </Link>
-              <Link to={createLink('#quote')} className="text-cream hover:text-gold transition-colors font-body font-medium">
+              </button>
+              <button 
+                onClick={() => handleSectionClick('#quote')} 
+                className="text-cream hover:text-gold transition-colors font-body font-medium"
+              >
                 Get Quote
-              </Link>
+              </button>
             </div>
 
             {/* Mobile Hamburger Menu Button */}
@@ -195,13 +215,67 @@ const Hero = () => {
                       </a>
                     </li>
                     <li>
+                      <button
+                        onClick={() => {
+                          setIsMobileMenuOpen(false)
+                          handleSectionClick('#home')
+                        }}
+                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300 w-full text-left"
+                      >
+                        Home
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          setIsMobileMenuOpen(false)
+                          handleSectionClick('#services')
+                        }}
+                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300 w-full text-left"
+                      >
+                        Services
+                      </button>
+                    </li>
+                    <li>
                       <Link
-                        to={createLink('#quote')}
-                        className="flex items-center gap-2 py-3 px-4 border-2 border-gold text-gold font-body font-bold rounded-lg hover:bg-gold hover:text-navy transition-all duration-300 mt-2"
+                        to="/portfolio"
+                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        Get Quote
+                        Portfolio
                       </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          setIsMobileMenuOpen(false)
+                          handleSectionClick('#contact')
+                        }}
+                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300 w-full text-left"
+                      >
+                        Contact
+                      </button>
+                    </li>
+                    <li className="pt-4 border-t border-gray-200">
+                      <a
+                        href="tel:7742077924"
+                        className="flex items-center gap-2 py-3 px-4 bg-gold text-navy font-body font-bold rounded-lg hover:bg-gold/90 transition-colors duration-300"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <Phone className="w-5 h-5" />
+                        Call Now
+                      </a>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          setIsMobileMenuOpen(false)
+                          handleSectionClick('#quote')
+                        }}
+                        className="flex items-center gap-2 py-3 px-4 border-2 border-gold text-gold font-body font-bold rounded-lg hover:bg-gold hover:text-navy transition-all duration-300 mt-2 w-full"
+                      >
+                        Get Quote
+                      </button>
                     </li>
                   </ul>
                 </nav>
@@ -237,18 +311,18 @@ const Hero = () => {
               >
                 Call Now: (774) 207-7924
               </a>
-              <Link
-                to={createLink('#quote')}
+              <button
+                onClick={() => handleSectionClick('#quote')}
                 className="w-full sm:w-auto px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Get Free Quote
-              </Link>
-              <Link
-                to={createLink('#showroom')}
+              </button>
+              <button
+                onClick={() => handleSectionClick('#showroom')}
                 className="w-full sm:w-auto px-8 py-4 border-2 border-gold text-gold font-body font-semibold text-lg rounded-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105"
               >
                 Visit Showroom
-              </Link>
+              </button>
             </div>
 
             {/* Trust Badges */}
