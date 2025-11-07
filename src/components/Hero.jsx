@@ -8,7 +8,14 @@ const Hero = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
   const isPortfolioPage = location.pathname === '/portfolio'
-  
+
+  const heroImageSources = {
+    xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1920/v1762535831/1_o5smft.webp',
+    lg: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1440/v1762535831/1_o5smft.webp',
+    md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1024/v1762535831/1_o5smft.webp',
+    sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_768/v1762535831/1_o5smft.webp'
+  }
+
   // Helper function to handle navigation and scroll
   const handleSectionClick = (hash) => {
     if (isPortfolioPage) {
@@ -57,12 +64,20 @@ const Hero = () => {
     <div className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535831/1_o5smft.webp)'
-          }}
-        />
+        <picture>
+          <source media="(min-width: 1280px)" srcSet={heroImageSources.xl} />
+          <source media="(min-width: 1024px)" srcSet={heroImageSources.lg} />
+          <source media="(min-width: 768px)" srcSet={heroImageSources.md} />
+          <img
+            src={heroImageSources.sm}
+            alt="Luxury stone countertop kitchen with premium finishes"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="h-full w-full object-cover"
+            aria-hidden="true"
+          />
+        </picture>
         <div className="absolute inset-0 bg-navy opacity-30"></div>
       </div>
 
@@ -82,7 +97,11 @@ const Hero = () => {
                 <img 
                   src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif"
                   alt="All Granite & Stone Logo"
+                  width="144"
+                  height="144"
                   className="w-full h-full object-contain"
+                  loading="eager"
+                  fetchPriority="high"
                 />
               </div>
               <span className={`font-display text-base lg:text-lg font-bold transition-colors duration-300 ${

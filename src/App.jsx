@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Hero from './components/Hero'
-import QuickBenefitsBar from './components/QuickBenefitsBar'
-import ServicesShowcase from './components/ServicesShowcase'
-import WhyChooseUs from './components/WhyChooseUs'
-import MaterialsShowcase from './components/MaterialsShowcase'
-import PortfolioGallery from './components/PortfolioGallery'
-import TestimonialsCarousel from './components/TestimonialsCarousel'
-import ServiceAreaMap from './components/ServiceAreaMap'
-import ContactForm from './components/ContactForm'
-import FinalCTASection from './components/FinalCTASection'
-import Footer from './components/Footer'
-import Portfolio from './pages/Portfolio'
+
+const QuickBenefitsBar = lazy(() => import('./components/QuickBenefitsBar'))
+const ServicesShowcase = lazy(() => import('./components/ServicesShowcase'))
+const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'))
+const MaterialsShowcase = lazy(() => import('./components/MaterialsShowcase'))
+const PortfolioGallery = lazy(() => import('./components/PortfolioGallery'))
+const TestimonialsCarousel = lazy(() => import('./components/TestimonialsCarousel'))
+const ServiceAreaMap = lazy(() => import('./components/ServiceAreaMap'))
+const ContactForm = lazy(() => import('./components/ContactForm'))
+const FinalCTASection = lazy(() => import('./components/FinalCTASection'))
+const Footer = lazy(() => import('./components/Footer'))
+const Portfolio = lazy(() => import('./pages/Portfolio'))
+
+const SectionFallback = () => (
+  <div className="w-full py-16 md:py-24 animate-pulse bg-cream/30" aria-hidden="true" />
+)
 
 function HomePage() {
   return (
@@ -23,18 +28,38 @@ function HomePage() {
       
       <main id="main-content">
         <Hero />
-        <QuickBenefitsBar />
-        <ServicesShowcase />
-        <WhyChooseUs />
-        <MaterialsShowcase />
-        <PortfolioGallery />
-        <TestimonialsCarousel />
-        <ServiceAreaMap />
-        <ContactForm />
-        <FinalCTASection />
+        <Suspense fallback={<SectionFallback />}>
+          <QuickBenefitsBar />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <ServicesShowcase />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <WhyChooseUs />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <MaterialsShowcase />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <PortfolioGallery />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <TestimonialsCarousel />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <ServiceAreaMap />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <ContactForm />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <FinalCTASection />
+        </Suspense>
       </main>
       
-      <Footer />
+      <Suspense fallback={<SectionFallback />}>
+        <Footer />
+      </Suspense>
     </>
   )
 }
@@ -45,7 +70,14 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/portfolio" element={<Portfolio />} />
+          <Route
+            path="/portfolio"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <Portfolio />
+              </Suspense>
+            )}
+          />
         </Routes>
       </div>
     </Router>
