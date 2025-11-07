@@ -1,6 +1,5 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
 
 const PortfolioGallery = () => {
   const navigate = useNavigate()
@@ -45,26 +44,16 @@ const PortfolioGallery = () => {
     <section className="w-full py-16 md:py-20 px-4 lg:px-8 bg-cream">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-12 md:mb-16"
-        >
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-12 md:mb-16">
           Transformations We're Proud Of
-        </motion.h2>
+        </h2>
 
         {/* Featured Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12">
-          {featuredProjects.map((project, index) => (
-            <motion.div
+          {featuredProjects.map((project) => (
+            <div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-lg cursor-pointer"
+              className="group relative overflow-hidden rounded-lg cursor-pointer transition-transform duration-300 hover:-translate-y-1"
               onClick={() => handleImageClick(project.category)}
             >
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -94,23 +83,15 @@ const PortfolioGallery = () => {
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/50 transition-all duration-300" />
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* See More Projects Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center"
-        >
-          <motion.button
+        <div className="text-center">
+          <button
             onClick={() => navigate('/portfolio')}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-transform duration-300 hover:-translate-y-1 shadow-lg"
           >
             See More Projects
             <svg 
@@ -126,8 +107,8 @@ const PortfolioGallery = () => {
                 d="M9 5l7 7-7 7" 
               />
             </svg>
-          </motion.button>
-        </motion.div>
+          </button>
+        </div>
       </div>
     </section>
   )

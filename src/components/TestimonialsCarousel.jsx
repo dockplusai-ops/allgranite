@@ -1,5 +1,4 @@
 import React from 'react'
-import { motion } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -66,15 +65,9 @@ const TestimonialsCarousel = () => {
     <section className="w-full py-16 md:py-20 px-4 lg:px-8 bg-cream">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-12 md:mb-16"
-        >
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-12 md:mb-16">
           What Our Customers Say
-        </motion.h2>
+        </h2>
 
         {/* Swiper Carousel */}
         <div className="relative">
@@ -111,13 +104,7 @@ const TestimonialsCarousel = () => {
           >
             {testimonials.map((testimonial) => (
               <SwiperSlide key={testimonial.id}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-white rounded-lg p-6 md:p-8 shadow-md h-full flex flex-col"
-                >
+                <div className="bg-white rounded-lg p-6 md:p-8 shadow-md h-full flex flex-col">
                   {/* 5-Star Rating */}
                   <div className="flex gap-1 mb-4">
                     {renderStars()}
@@ -158,7 +145,7 @@ const TestimonialsCarousel = () => {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
