@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 
 const Hero = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isHeroLoaded, setIsHeroLoaded] = useState(false)
   const location = useLocation()
   const isPortfolioPage = location.pathname === '/portfolio'
 
@@ -18,8 +18,8 @@ const Hero = () => {
   const heroImageSources = {
     xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1920/v1762535831/1_o5smft.webp',
     lg: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1440/v1762535831/1_o5smft.webp',
-    md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_960/v1762535831/1_o5smft.webp',
-    sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_640/v1762535831/1_o5smft.webp'
+    md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_800/v1762535831/1_o5smft.webp',
+    sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_480/v1762535831/1_o5smft.webp'
   }
 
   // Helper function to handle navigation and scroll
@@ -34,6 +34,11 @@ const Hero = () => {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     }
+  }
+
+  const handleMenuNavigation = (hash) => {
+    handleSectionClick(hash)
+    setIsMobileMenuOpen(false)
   }
 
   // Helper function to create links that work on both pages
@@ -70,7 +75,13 @@ const Hero = () => {
     <div className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <picture>
+        <div
+          className={`absolute inset-0 bg-gradient-to-br from-navy via-navy/70 to-navy/40 transition-opacity duration-700 ${
+            isHeroLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
+          aria-hidden="true"
+        />
+        <picture className={`absolute inset-0 transition-opacity duration-700 ${isHeroLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <source media="(min-width: 1280px)" srcSet={heroImageSources.xl} />
           <source media="(min-width: 1024px)" srcSet={heroImageSources.lg} />
           <source media="(min-width: 768px)" srcSet={heroImageSources.md} />
@@ -82,16 +93,17 @@ const Hero = () => {
             decoding="async"
             className="h-full w-full object-cover"
             aria-hidden="true"
+            onLoad={() => setIsHeroLoaded(true)}
           />
         </picture>
         <div className="absolute inset-0 bg-navy opacity-30"></div>
       </div>
 
       {/* Sticky Header */}
-      <motion.header 
+      <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-white lg:bg-navy/95 backdrop-blur-sm shadow-lg' 
+          isScrolled
+            ? 'bg-white lg:bg-navy/95 backdrop-blur-sm shadow-lg'
             : 'bg-transparent'
         }`}
       >
@@ -155,161 +167,100 @@ const Hero = () => {
             </button>
           </div>
         </nav>
-      </motion.header>
+      </header>
 
       {/* Mobile Hamburger Menu Overlay */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            {/* Dark Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-navy/90 z-40 lg:hidden"
+      <div
+        className={`fixed inset-0 bg-navy/90 z-40 lg:hidden transition-opacity duration-300 ${
+          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      />
+
+      {/* Mobile Menu Panel */}
+      <div
+        className={`fixed top-0 right-0 bottom-0 w-80 bg-white z-50 lg:hidden shadow-2xl transform transition-transform duration-300 ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex flex-col h-full">
+          {/* Close Button */}
+          <div className="flex justify-end p-6">
+            <button
               onClick={() => setIsMobileMenuOpen(false)}
-            />
-
-            {/* Menu Panel */}
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-80 bg-white z-50 lg:hidden shadow-2xl"
+              className="text-navy hover:text-gold transition-colors duration-300"
+              aria-label="Close menu"
             >
-              <div className="flex flex-col h-full">
-                {/* Close Button */}
-                <div className="flex justify-end p-6">
-                  <button
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-navy hover:text-gold transition-colors duration-300"
-                    aria-label="Close menu"
-                  >
-                    <X className="w-8 h-8" />
-                  </button>
-                </div>
+              <X className="w-8 h-8" />
+            </button>
+          </div>
 
-                {/* Menu Links */}
-                <nav className="flex-1 px-6 py-4">
-                  <ul className="space-y-2">
-                    <li>
-                      <Link
-                        to={createLink('#home')}
-                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Home
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to={createLink('#services')}
-                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Services
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/portfolio"
-                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Portfolio
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to={createLink('#contact')}
-                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Contact
-                      </Link>
-                    </li>
-                    <li className="pt-4 border-t border-gray-200">
-                      <a
-                        href="tel:7742077924"
-                        className="flex items-center gap-2 py-3 px-4 bg-gold text-navy font-body font-bold rounded-lg hover:bg-gold/90 transition-colors duration-300"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <Phone className="w-5 h-5" />
-                        Call Now
-                      </a>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => {
-                          setIsMobileMenuOpen(false)
-                          handleSectionClick('#home')
-                        }}
-                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300 w-full text-left"
-                      >
-                        Home
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => {
-                          setIsMobileMenuOpen(false)
-                          handleSectionClick('#services')
-                        }}
-                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300 w-full text-left"
-                      >
-                        Services
-                      </button>
-                    </li>
-                    <li>
-                      <Link
-                        to="/portfolio"
-                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Portfolio
-                      </Link>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => {
-                          setIsMobileMenuOpen(false)
-                          handleSectionClick('#contact')
-                        }}
-                        className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300 w-full text-left"
-                      >
-                        Contact
-                      </button>
-                    </li>
-                    <li className="pt-4 border-t border-gray-200">
-                      <a
-                        href="tel:7742077924"
-                        className="flex items-center gap-2 py-3 px-4 bg-gold text-navy font-body font-bold rounded-lg hover:bg-gold/90 transition-colors duration-300"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        <Phone className="w-5 h-5" />
-                        Call Now
-                      </a>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => {
-                          setIsMobileMenuOpen(false)
-                          handleSectionClick('#quote')
-                        }}
-                        className="flex items-center gap-2 py-3 px-4 border-2 border-gold text-gold font-body font-bold rounded-lg hover:bg-gold hover:text-navy transition-all duration-300 mt-2 w-full"
-                      >
-                        Get Quote
-                      </button>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+          {/* Menu Links */}
+          <nav className="flex-1 px-6 py-4">
+            <ul className="space-y-2">
+              <li>
+                <button
+                  onClick={() => handleMenuNavigation('#home')}
+                  className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
+                >
+                  Home
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleMenuNavigation('#services')}
+                  className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
+                >
+                  Services
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleMenuNavigation('#showroom')}
+                  className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
+                >
+                  Showroom
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleMenuNavigation('#quote')}
+                  className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
+                >
+                  Get Quote
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleMenuNavigation('#contact')}
+                  className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
+                >
+                  Contact
+                </button>
+              </li>
+              <li>
+                <Link
+                  to="/portfolio"
+                  className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Portfolio
+                </Link>
+              </li>
+              <li className="pt-4 border-t border-gray-200">
+                <a
+                  href="tel:7742077924"
+                  className="flex items-center gap-2 py-3 px-4 bg-gold text-navy font-body font-bold rounded-lg hover:bg-gold/90 transition-colors duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Phone className="w-5 h-5" />
+                  Call Now
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
 
       {/* Hero Content */}
       <div className="relative z-10 min-h-screen flex flex-col">

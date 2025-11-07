@@ -105,8 +105,8 @@
     <link
       rel="preload"
       as="image"
-      href="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_640/v1762535831/1_o5smft.webp"
-      imagesrcset="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_640/v1762535831/1_o5smft.webp 640w, https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_960/v1762535831/1_o5smft.webp 960w, https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1440/v1762535831/1_o5smft.webp 1440w, https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1920/v1762535831/1_o5smft.webp 1920w"
+      href="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_480/v1762535831/1_o5smft.webp"
+      imagesrcset="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_480/v1762535831/1_o5smft.webp 480w, https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_800/v1762535831/1_o5smft.webp 800w, https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1440/v1762535831/1_o5smft.webp 1440w, https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1920/v1762535831/1_o5smft.webp 1920w"
       imagesizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 100vw"
       fetchpriority="high"
     >
@@ -115,9 +115,12 @@
     <script>
       window.dataLayer = window.dataLayer || []
       window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.init' })
+ 
+      let gtmInjected = false
 
       function loadGoogleTagManager() {
-        if (document.getElementById('gtm-loader')) return
+        if (gtmInjected) return
+        gtmInjected = true
         const gtmScript = document.createElement('script')
         gtmScript.id = 'gtm-loader'
         gtmScript.async = true
@@ -125,10 +128,21 @@
         document.head.appendChild(gtmScript)
       }
 
+      const interactionEvents = ['scroll', 'pointerdown', 'keydown']
+
+      const triggerOnInteraction = () => {
+        loadGoogleTagManager()
+        interactionEvents.forEach((evt) => window.removeEventListener(evt, triggerOnInteraction))
+      }
+
+      interactionEvents.forEach((evt) =>
+        window.addEventListener(evt, triggerOnInteraction, { once: true, passive: true })
+      )
+
       if ('requestIdleCallback' in window) {
         requestIdleCallback(loadGoogleTagManager)
       } else {
-        window.addEventListener('load', loadGoogleTagManager)
+        setTimeout(loadGoogleTagManager, 4000)
       }
     </script>
     <!-- Google Tag Manager (noscript) -->

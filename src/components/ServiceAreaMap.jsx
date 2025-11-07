@@ -1,5 +1,4 @@
 import React from 'react'
-import { motion } from 'framer-motion'
 import { MapPin, Phone, Clock } from 'lucide-react'
 
 const ServiceAreaMap = () => {
@@ -25,26 +24,14 @@ const ServiceAreaMap = () => {
     <section id="showroom" className="w-full py-16 md:py-20 px-4 lg:px-8 bg-white scroll-mt-20 lg:scroll-mt-24">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-12 md:mb-16"
-        >
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-12 md:mb-16">
           Proudly Serving Cape Cod & Beyond
-        </motion.h2>
+        </h2>
 
         {/* Two-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* LEFT COLUMN - Map */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
+          <div className="relative">
             <div className="bg-cream rounded-lg p-6 md:p-8 shadow-lg relative">
               {/* Map Image */}
               <div className="relative w-full">
@@ -88,16 +75,10 @@ const ServiceAreaMap = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* RIGHT COLUMN - Towns & Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             {/* Towns Served */}
             <div>
               <h3 className="text-2xl font-display font-bold text-navy mb-4">
@@ -160,13 +141,11 @@ const ServiceAreaMap = () => {
             </div>
 
             {/* Get Directions Button */}
-            <motion.a
+            <a
               href="https://www.google.com/maps/search/?api=1&query=207+Iyannough+Rd,+Hyannis,+MA+02601"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Get Directions
               <svg 
@@ -182,8 +161,8 @@ const ServiceAreaMap = () => {
                   d="M9 5l7 7-7 7" 
                 />
               </svg>
-            </motion.a>
-          </motion.div>
+            </a>
+          </div>
         </div>
       </div>
     </section>
