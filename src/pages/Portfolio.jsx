@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
 import { PhotoProvider, PhotoView } from 'react-photo-view'
 import 'react-photo-view/dist/react-photo-view.css'
 import Footer from '../components/Footer'
@@ -136,53 +135,39 @@ const Portfolio = () => {
       <section className="w-full py-16 md:py-20 px-4 lg:px-8 bg-cream">
         <div className="max-w-7xl mx-auto">
           {/* Section Title */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-8 md:mb-12"
-          >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-8 md:mb-12 animate-fade-in">
             Our Portfolio
-          </motion.h2>
+          </h2>
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
             {filters.map((filter) => (
-              <motion.button
+              <button
                 key={filter}
                 onClick={() => handleFilterChange(filter)}
-                className={`px-6 py-2 md:px-8 md:py-3 rounded-lg font-body font-medium text-sm md:text-base transition-all duration-300 ${
+                className={`px-6 py-2 md:px-8 md:py-3 rounded-lg font-body font-medium text-sm md:text-base transition-all duration-300 hover:scale-105 active:scale-95 ${
                   activeFilter === filter
                     ? 'bg-gold text-navy shadow-lg'
                     : 'bg-white text-navy hover:bg-gray-100'
                 }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 {filter}
-              </motion.button>
+              </button>
             ))}
           </div>
 
           {/* Gallery Grid */}
           <PhotoProvider>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeFilter}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-              >
-                {filteredProjects.map((project, index) => (
-                  <motion.div
-                    key={project.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    className="group relative overflow-hidden rounded-lg cursor-pointer"
-                  >
+            <div
+              key={activeFilter}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            >
+              {filteredProjects.map((project, index) => (
+                <div
+                  key={project.id}
+                  className="group relative overflow-hidden rounded-lg cursor-pointer animate-slide-up"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
                     <PhotoView src={project.image}>
                       <div className="relative aspect-[4/3] overflow-hidden">
                         {/* Image with Lazy Loading */}
@@ -209,22 +194,16 @@ const Portfolio = () => {
                         </div>
                       </div>
                     </PhotoView>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
-            </AnimatePresence>
+              </div>
           </PhotoProvider>
 
           {/* Back to Home Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-center mt-12 md:mt-16"
-          >
+          <div className="text-center mt-12 md:mt-16 animate-slide-up">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg hover:scale-105"
             >
               Back to Home
               <svg 
@@ -241,7 +220,7 @@ const Portfolio = () => {
                 />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { motion } from 'framer-motion'
 import { Lock, CheckCircle, Loader2 } from 'lucide-react'
 
 const ContactForm = () => {
@@ -58,28 +57,18 @@ const ContactForm = () => {
     <section id="quote" className="w-full py-16 md:py-20 px-4 lg:px-8 bg-cream scroll-mt-20 lg:scroll-mt-24">
       <div className="max-w-3xl mx-auto">
         {/* Section Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy mb-4">
             Get Your Free Quote
           </h2>
           <p className="text-lg md:text-xl text-gray-600 font-body">
             Receive a detailed estimate within 24 hours
           </p>
-        </motion.div>
+        </div>
 
         {/* Success Message */}
         {isSuccess && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-6 p-6 bg-green-50 border-2 border-green-200 rounded-lg flex items-center gap-4"
-          >
+          <div className="mb-6 p-6 bg-green-50 border-2 border-green-200 rounded-lg flex items-center gap-4 animate-slide-down">
             <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
             <div>
               <h3 className="text-green-800 font-body font-bold text-lg mb-1">
@@ -89,17 +78,13 @@ const ContactForm = () => {
                 We've received your request and will contact you within 24 hours.
               </p>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {/* Form */}
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white rounded-lg p-6 md:p-8 shadow-lg"
+          className="bg-white rounded-lg p-6 md:p-8 shadow-lg animate-slide-up"
         >
           <div className="space-y-6">
             {/* Full Name */}
@@ -271,7 +256,7 @@ const ContactForm = () => {
               </p>
             </div>
           </div>
-        </motion.form>
+        </form>
       </div>
     </section>
   )

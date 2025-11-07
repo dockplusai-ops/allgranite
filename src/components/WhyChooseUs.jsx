@@ -1,5 +1,4 @@
 import React from 'react'
-import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 
 const WhyChooseUs = () => {
@@ -34,26 +33,17 @@ const WhyChooseUs = () => {
     <section className="w-full py-16 md:py-20 px-4 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-12 md:mb-16"
-        >
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-navy text-center mb-12 md:mb-16 animate-fade-in">
           The All Granite & Stone Difference
-        </motion.h2>
+        </h2>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {features.map((feature, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group bg-white border border-gray-200 rounded-lg p-6 md:p-8 hover:border-gold hover:shadow-lg transition-all duration-300 cursor-pointer"
+              className="group bg-white border border-gray-200 rounded-lg p-6 md:p-8 hover:border-gold hover:shadow-lg transition-all duration-300 cursor-pointer animate-slide-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Checkmark Icon */}
               <div className="flex items-start gap-4">
@@ -71,7 +61,7 @@ const WhyChooseUs = () => {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -80,4 +70,3 @@ const WhyChooseUs = () => {
 }
 
 export default WhyChooseUs
-
