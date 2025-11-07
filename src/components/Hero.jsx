@@ -60,7 +60,7 @@ const Hero = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214275/Lucid_Realism_Hyperrealistic_professional_photo_of_upscale_Cap_1_mgcdyu.jpg)'
+            backgroundImage: 'url(https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535831/1_o5smft.webp)'
           }}
         />
         <div className="absolute inset-0 bg-navy opacity-30"></div>
@@ -80,7 +80,7 @@ const Hero = () => {
             <Link to="/" className="flex items-center space-x-3">
               <div className="relative w-28 h-28 lg:w-36 lg:h-36 flex-shrink-0 -my-4">
                 <img 
-                  src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762217425/Lucid_Realism_Highend_3D_logo_design_isolated_on_transparent_b_0-removebg-preview_n87fhr.png"
+                  src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif"
                   alt="All Granite & Stone Logo"
                   className="w-full h-full object-contain"
                 />

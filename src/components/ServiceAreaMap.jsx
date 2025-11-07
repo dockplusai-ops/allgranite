@@ -49,7 +49,7 @@ const ServiceAreaMap = () => {
               {/* Map Image */}
               <div className="relative w-full">
                 <img
-                  src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762293888/Map-of-Cape-Cod-Nantucket-and-Marthas-Vineyard-994x1024_pluzok.jpg"
+                  src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535830/20_wvpyet.webp"
                   alt="Map of Cape Cod, Nantucket, and Martha's Vineyard service area"
                   className="w-full h-auto rounded-lg"
                 />

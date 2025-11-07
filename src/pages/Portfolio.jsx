@@ -16,91 +16,91 @@ const Portfolio = () => {
       category: 'Kitchens',
       title: 'Modern Cape Cod Kitchen',
       material: 'White Quartzite',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214273/Lucid_Realism_Ultra_realistic_photography_of_a_modern_Cape_Cod_0_1_figk2z.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/8_rv8xux.webp'
     },
     {
       id: 2,
       category: 'Bathrooms',
       title: 'Luxury Master Bathroom',
       material: 'Carrara Marble',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214870/Lucid_Realism_Hyperrealistic_professional_photograph_of_specta_1_mwtgxp.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/9_iqshcr.webp'
     },
     {
       id: 3,
       category: 'Kitchens',
       title: 'Classic Coastal Kitchen',
       material: 'Granite',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214274/Lucid_Realism_Photorealistic_Cape_Cod_style_kitchen_interior_p_1_h83mua.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535828/13_qlpnko.webp'
     },
     {
       id: 4,
       category: 'Outdoor',
       title: 'Outdoor Kitchen Paradise',
       material: 'Weather-Resistant Quartz',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762289780/Default_Fotografia_casual_tirada_com_iPhone_16_Pro_Max_lens_ma_0_fhipeh.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535826/10_s51dlw.webp'
     },
     {
       id: 5,
       category: 'Kitchens',
       title: 'Contemporary Kitchen Design',
       material: 'Calacatta Quartz',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214275/Lucid_Realism_Hyperrealistic_professional_photo_of_upscale_Cap_1_mgcdyu.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535831/1_o5smft.webp'
     },
     {
       id: 6,
       category: 'Commercial',
       title: 'Restaurant Bar Counter',
       material: 'Durable Granite',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762292982/gemini-2.5-flash-image_Prompt_Ultra-Real%C3%ADstico_-_Hotel_Bar_com_Foco_no_Quartz_Countertop_Fotografia_pr-1_nqi7be.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535825/11_ew0tqd.webp'
     },
     {
       id: 7,
       category: 'Bathrooms',
       title: 'Spa-Like Powder Room',
       material: 'Soapstone',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214869/Lucid_Realism_Photorealistic_Cape_Cod_luxury_bathroom_interior_0_vmr4r4.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535828/13_qlpnko.webp'
     },
     {
       id: 8,
       category: 'Kitchens',
       title: 'Farmhouse Style Kitchen',
       material: 'Quartzite',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214274/Lucid_Realism_Ultra_high_definition_photograph_of_contemporary_0_ox7qc1.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535828/14_rejm9y.webp'
     },
     {
       id: 9,
       category: 'Outdoor',
       title: 'Patio Bar Area',
       material: 'Outdoor Granite',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762289780/Default_Foto_documental_de_reforma_residencial_finalizada_outd_0_blbd6z.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535828/15_vzxnuf.webp'
     },
     {
       id: 13,
       category: 'Outdoor',
       title: 'Luxury Outdoor Entertainment',
       material: 'Premium Stone',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762289779/fcda3ac147d5689f2ce9daa73160ad09_x5rxfk.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/12_r7s9dq.webp'
     },
     {
       id: 10,
       category: 'Bathrooms',
       title: 'Modern Guest Bath',
       material: 'Quartz',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214869/Lucid_Realism_Photorealistic_Cape_Cod_luxury_bathroom_interior_1_aiecor.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535828/13_qlpnko.webp'
     },
     {
       id: 11,
       category: 'Commercial',
       title: 'Office Reception Counter',
       material: 'Premium Marble',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762292982/gemini-2.5-flash-image_Prompt_Simples_e_Detalhista_-_Close-up_Quartz_Bar_Counter_Fotografia_profissiona-1_kasqqy.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535829/17_dam3tc.webp'
     },
     {
       id: 12,
       category: 'Kitchens',
       title: 'Elegant Island Kitchen',
       material: 'Statuary Marble',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214273/Lucid_Realism_Ultra_realistic_photography_of_a_modern_Cape_Cod_1_1_a1jy2n.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535831/18_kwfwxl.webp'
     }
   ]
 

@@ -12,28 +12,28 @@ const PortfolioGallery = () => {
       category: 'Kitchens',
       title: 'Modern Cape Cod Kitchen',
       material: 'White Quartzite',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214273/Lucid_Realism_Ultra_realistic_photography_of_a_modern_Cape_Cod_0_1_figk2z.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/8_rv8xux.webp'
     },
     {
       id: 2,
       category: 'Bathrooms',
       title: 'Luxury Master Bathroom',
       material: 'Carrara Marble',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762214870/Lucid_Realism_Hyperrealistic_professional_photograph_of_specta_1_mwtgxp.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/9_iqshcr.webp'
     },
     {
       id: 4,
       category: 'Outdoor',
       title: 'Outdoor Kitchen Paradise',
       material: 'Weather-Resistant Quartz',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762289780/Default_Fotografia_casual_tirada_com_iPhone_16_Pro_Max_lens_ma_0_fhipeh.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535826/10_s51dlw.webp'
     },
     {
       id: 6,
       category: 'Commercial',
       title: 'Restaurant Bar Counter',
       material: 'Durable Granite',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762292982/gemini-2.5-flash-image_Prompt_Ultra-Real%C3%ADstico_-_Hotel_Bar_com_Foco_no_Quartz_Countertop_Fotografia_pr-1_nqi7be.jpg'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535825/11_ew0tqd.webp'
     }
   ]
 

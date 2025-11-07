@@ -9,7 +9,7 @@ const MaterialsShowcase = () => {
       description: 'Timeless durability',
       durability: 5,
       price: '$$$',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762377845/granite-textures-seamless_fuyzfe.jpg',
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535825/3_wqvvt2.webp',
       fullDescription: 'Naturally resistant to heat, scratches, and stains. Perfect for busy kitchens.'
     },
     {
@@ -17,7 +17,7 @@ const MaterialsShowcase = () => {
       description: 'Elegant luxury',
       durability: 3,
       price: '$$$$',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762377845/marble_Calacatta-Borghini_LHOcwv5aOZW3cKeSct8X_bwmwcm.jpg',
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535825/4_aybqia.webp',
       fullDescription: 'Sophisticated beauty with unique veining patterns. Requires careful maintenance.'
     },
     {
@@ -25,7 +25,7 @@ const MaterialsShowcase = () => {
       description: 'Low maintenance beauty',
       durability: 5,
       price: '$$',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762287993/flux-kontext-max_Ultra_realistic_photograph_of_a_white_quartz_slab_detailed_close-up_view_showing-1_p7yxsz.jpg',
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535825/5_fdzchu.webp',
       fullDescription: 'Engineered for strength and consistency. Non-porous and easy to clean.'
     },
     {
@@ -33,7 +33,7 @@ const MaterialsShowcase = () => {
       description: 'Natural strength',
       durability: 5,
       price: '$$$',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762287993/flux-kontext-max_Ultra_realistic_photograph_of_a_quartz_slab_detailed_close-up_view_showing_natur-0_gia5oe.jpg',
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535826/6_zeexqu.webp',
       fullDescription: 'Harder than granite, with the beauty of marble. Exceptional durability.'
     },
     {
@@ -41,7 +41,7 @@ const MaterialsShowcase = () => {
       description: 'Unique character',
       durability: 4,
       price: '$$',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762377845/soapstone_Barroca-Soapstone_2LTP16AfN4Rk3ZR4J6fQ_icnncq.jpg',
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/7_mthrbp.webp',
       fullDescription: 'Natural, non-porous surface that develops a rich patina over time.'
     }
   ]
