@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Hero from './components/Hero'
 import LazySection from './components/LazySection'
-import { LazyMotion } from 'framer-motion'
 
 const QuickBenefitsBar = lazy(() => import('./components/QuickBenefitsBar'))
 const ServicesShowcase = lazy(() => import('./components/ServicesShowcase'))
@@ -15,8 +14,6 @@ const ContactForm = lazy(() => import('./components/ContactForm'))
 const FinalCTASection = lazy(() => import('./components/FinalCTASection'))
 const Footer = lazy(() => import('./components/Footer'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
-
-const loadMotionFeatures = () => import('framer-motion').then((res) => res.domAnimation)
 
 const SectionFallback = () => (
   <div className="w-full py-16 md:py-24 animate-pulse bg-cream/30" aria-hidden="true" />
@@ -31,7 +28,6 @@ function HomePage() {
       </a>
       
       <main id="main-content">
-        <LazyMotion features={loadMotionFeatures} strict>
           <Hero />
           <LazySection
             fallbackHeight="260px"
@@ -81,31 +77,15 @@ function HomePage() {
               </Suspense>
             )}
           />
-          <LazySection
-            fallbackHeight="420px"
-            render={() => (
-              <Suspense fallback={<SectionFallback />}>
-                <ServiceAreaMap />
-              </Suspense>
-            )}
-          />
-          <LazySection
-            fallbackHeight="520px"
-            render={() => (
-              <Suspense fallback={<SectionFallback />}>
-                <ContactForm />
-              </Suspense>
-            )}
-          />
-          <LazySection
-            fallbackHeight="320px"
-            render={() => (
-              <Suspense fallback={<SectionFallback />}>
-                <FinalCTASection />
-              </Suspense>
-            )}
-          />
-        </LazyMotion>
+          <Suspense fallback={<SectionFallback />}>
+            <ServiceAreaMap />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
+            <ContactForm />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
+            <FinalCTASection />
+          </Suspense>
       </main>
       
       <LazySection

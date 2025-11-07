@@ -174,35 +174,6 @@ const TestimonialsCarousel = () => {
           {/* Custom Pagination Dots */}
           <div className="swiper-pagination-custom flex justify-center gap-2 mt-8"></div>
         </div>
-
-        {/* Read More Reviews Link */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-12"
-        >
-          <a
-            href="#reviews"
-            className="inline-flex items-center gap-2 text-gold font-body font-semibold text-lg hover:text-navy transition-colors duration-300"
-          >
-            Read More Reviews
-            <svg 
-              className="w-5 h-5" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M9 5l7 7-7 7" 
-              />
-            </svg>
-          </a>
-        </motion.div>
       </div>
     </section>
   )

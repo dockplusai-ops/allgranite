@@ -9,6 +9,12 @@ const Hero = () => {
   const location = useLocation()
   const isPortfolioPage = location.pathname === '/portfolio'
 
+  const desktopPhoneButtonClasses = `flex items-center gap-2 px-5 py-2 rounded-full border transition-all duration-300 text-sm font-body font-semibold ${
+    isScrolled
+      ? 'border-navy/70 text-navy hover:bg-navy hover:text-white'
+      : 'border-cream/80 text-cream hover:bg-cream hover:text-navy'
+  }`
+
   const heroImageSources = {
     xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1920/v1762535831/1_o5smft.webp',
     lg: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1440/v1762535831/1_o5smft.webp',
@@ -72,7 +78,7 @@ const Hero = () => {
             src={heroImageSources.sm}
             alt="Luxury stone countertop kitchen with premium finishes"
             loading="eager"
-            fetchPriority="high"
+            fetchpriority="high"
             decoding="async"
             className="h-full w-full object-cover"
             aria-hidden="true"
@@ -101,7 +107,7 @@ const Hero = () => {
                   height="144"
                   className="w-full h-full object-contain"
                   loading="eager"
-                  fetchPriority="high"
+                  fetchpriority="high"
                 />
               </div>
               <span className={`font-display text-base lg:text-lg font-bold transition-colors duration-300 ${
@@ -113,8 +119,9 @@ const Hero = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              <a href="tel:7742077924" className="text-cream hover:text-gold transition-colors font-body font-medium">
-                Phone
+              <a href="tel:7742077924" className={desktopPhoneButtonClasses}>
+                <Phone className="w-4 h-4" />
+                Call Us
               </a>
               <button 
                 onClick={() => handleSectionClick('#showroom')} 
@@ -324,12 +331,6 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-slide-up" style={{ animationDelay: '0.4s' }}>
-              <a
-                href="tel:7742077924"
-                className="w-full sm:w-auto px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                Call Now: (774) 207-7924
-              </a>
               <button
                 onClick={() => handleSectionClick('#quote')}
                 className="w-full sm:w-auto px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -358,17 +359,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile Sticky Call Button */}
-      <motion.a
-        href="tel:7742077924"
-        initial={{ y: 100 }}
-        animate={{ y: 0 }}
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-gold/95 backdrop-blur-sm text-navy font-body font-bold text-lg py-4 px-6 text-center shadow-2xl hover:bg-gold transition-colors duration-300"
-      >
-        <span className="text-2xl mr-2">📞</span>
-        Call Now: (774) 207-7924
-      </motion.a>
     </div>
   )
 }

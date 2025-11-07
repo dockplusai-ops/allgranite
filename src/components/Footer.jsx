@@ -11,11 +11,11 @@ const Footer = () => {
   ]
 
   const services = [
-    { name: 'Kitchen Countertops', href: '#kitchen' },
-    { name: 'Bathroom Vanities', href: '#bathroom' },
-    { name: 'Outdoor Kitchens', href: '#outdoor' },
-    { name: 'Fireplaces', href: '#fireplace' },
-    { name: 'Custom Work', href: '#custom' }
+    { name: 'Kitchen Countertops', href: '/portfolio?filter=Kitchens' },
+    { name: 'Bathroom Vanities', href: '/portfolio?filter=Bathrooms' },
+    { name: 'Outdoor Kitchens', href: '/portfolio?filter=Outdoor' },
+    { name: 'Commercial Projects', href: '/portfolio?filter=Commercial' },
+    { name: 'Custom Works', href: '/#quote' }
   ]
 
   return (

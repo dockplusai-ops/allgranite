@@ -51,7 +51,7 @@ const Portfolio = () => {
       category: 'Commercial',
       title: 'Restaurant Bar Counter',
       material: 'Durable Granite',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535825/11_ew0tqd.webp'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/12_r7s9dq.webp'
     },
     {
       id: 7,
@@ -79,7 +79,7 @@ const Portfolio = () => {
       category: 'Outdoor',
       title: 'Luxury Outdoor Entertainment',
       material: 'Premium Stone',
-      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/12_r7s9dq.webp'
+      image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535825/11_ew0tqd.webp'
     },
     {
       id: 10,
