@@ -12,8 +12,8 @@ const Hero = () => {
   const heroImageSources = {
     xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1920/v1762535831/1_o5smft.webp',
     lg: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1440/v1762535831/1_o5smft.webp',
-    md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1024/v1762535831/1_o5smft.webp',
-    sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_768/v1762535831/1_o5smft.webp'
+    md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_960/v1762535831/1_o5smft.webp',
+    sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_640/v1762535831/1_o5smft.webp'
   }
 
   // Helper function to handle navigation and scroll
