@@ -223,16 +223,14 @@ const ContactForm = () => {
             </div>
 
             {/* Submit Button */}
-            <motion.button
+            <button
               type="submit"
               disabled={isSubmitting || isSuccess}
               className={`w-full px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg transition-all duration-300 shadow-lg flex items-center justify-center gap-2 ${
                 isSubmitting || isSuccess
                   ? 'opacity-75 cursor-not-allowed'
-                  : 'hover:bg-gold/90 hover:shadow-xl'
+                  : 'hover:bg-gold/90 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]'
               }`}
-              whileHover={!isSubmitting && !isSuccess ? { scale: 1.02 } : {}}
-              whileTap={!isSubmitting && !isSuccess ? { scale: 0.98 } : {}}
             >
               {isSubmitting ? (
                 <>
@@ -242,7 +240,7 @@ const ContactForm = () => {
               ) : (
                 'Get My Free Quote'
               )}
-            </motion.button>
+            </button>
 
             {/* Trust Elements */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 border-t border-gray-200">
