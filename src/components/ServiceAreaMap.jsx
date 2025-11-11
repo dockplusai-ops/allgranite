@@ -1,5 +1,6 @@
 import React from 'react'
 import { MapPin, Phone, Clock } from 'lucide-react'
+import { trackPhoneClick, trackDirectionsClick } from '../utils/gtm'
 
 const ServiceAreaMap = () => {
   const towns = [
@@ -124,6 +125,7 @@ const ServiceAreaMap = () => {
                 <a
                   href="tel:7742077924"
                   className="text-navy font-body font-semibold text-base md:text-lg hover:text-gold transition-colors duration-300"
+                  onClick={() => trackPhoneClick('showroom')}
                 >
                   (774) 207-7924
                 </a>
@@ -146,6 +148,7 @@ const ServiceAreaMap = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-lg"
+              onClick={() => trackDirectionsClick('google_maps')}
             >
               Get Directions
               <svg 

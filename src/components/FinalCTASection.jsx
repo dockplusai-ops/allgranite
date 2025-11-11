@@ -1,5 +1,6 @@
 import React from 'react'
 import { Check, Phone } from 'lucide-react'
+import { trackPhoneClick, trackCTAClick } from '../utils/gtm'
 
 const FinalCTASection = () => {
   const benefits = [
@@ -33,6 +34,7 @@ const FinalCTASection = () => {
           <a
             href="#quote"
             className="inline-flex items-center gap-2 px-10 py-5 md:px-12 md:py-6 bg-gold text-navy font-body font-bold text-xl md:text-2xl rounded-lg hover:bg-gold/90 transition-all duration-300 shadow-2xl hover:scale-105"
+            onClick={() => trackCTAClick('get_free_quote', 'final_cta')}
           >
             Get Your Free Quote Today
             <svg 
@@ -63,6 +65,7 @@ const FinalCTASection = () => {
           <a
             href="tel:7742077924"
             className="inline-flex items-center gap-3 text-white hover:text-gold transition-all duration-300 hover:scale-105"
+            onClick={() => trackPhoneClick('final_cta')}
           >
             <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gold/20 flex items-center justify-center hover:bg-gold transition-colors duration-300">
               <Phone className="w-7 h-7 md:w-8 md:h-8 text-gold" />

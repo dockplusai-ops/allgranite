@@ -1,5 +1,6 @@
 import React from 'react'
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram } from 'lucide-react'
+import { trackPhoneClick, trackEmailClick, trackSocialClick, trackServiceClick, trackPortfolioView } from '../utils/gtm'
 
 const Footer = () => {
   const quickLinks = [
@@ -34,6 +35,11 @@ const Footer = () => {
                   <a
                     href={link.href}
                     className="font-body text-white/80 hover:text-gold transition-colors duration-300"
+                    onClick={() => {
+                      if (link.name === 'Portfolio') {
+                        trackPortfolioView('footer')
+                      }
+                    }}
                   >
                     {link.name}
                   </a>
@@ -53,6 +59,7 @@ const Footer = () => {
                   <a
                     href={service.href}
                     className="font-body text-white/80 hover:text-gold transition-colors duration-300"
+                    onClick={() => trackServiceClick(service.name)}
                   >
                     {service.name}
                   </a>
@@ -72,6 +79,7 @@ const Footer = () => {
                 <a
                   href="tel:7742077924"
                   className="font-body text-white/80 hover:text-gold transition-colors duration-300"
+                  onClick={() => trackPhoneClick('footer')}
                 >
                   (774) 207-7924
                 </a>
@@ -81,6 +89,7 @@ const Footer = () => {
                 <a
                   href="mailto:info@allgraniteandstone.com"
                   className="font-body text-white/80 hover:text-gold transition-colors duration-300 break-all"
+                  onClick={() => trackEmailClick('footer')}
                 >
                   info@allgraniteandstone.com
                 </a>
@@ -104,20 +113,22 @@ const Footer = () => {
             {/* Social Media Icons */}
             <div className="flex gap-4 mt-6">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/allgraniteandstone"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors duration-300 group"
                 aria-label="Facebook"
+                onClick={() => trackSocialClick('facebook')}
               >
                 <Facebook className="w-5 h-5 text-white group-hover:text-navy transition-colors duration-300" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/allgraniteandstone/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors duration-300 group"
                 aria-label="Instagram"
+                onClick={() => trackSocialClick('instagram')}
               >
                 <Instagram className="w-5 h-5 text-white group-hover:text-navy transition-colors duration-300" />
               </a>

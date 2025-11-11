@@ -4,6 +4,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view'
 import 'react-photo-view/dist/react-photo-view.css'
 import Footer from '../components/Footer'
 import Hero from '../components/Hero'
+import { trackPortfolioFilter } from '../utils/gtm'
 
 const Portfolio = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -115,6 +116,7 @@ const Portfolio = () => {
 
   const handleFilterChange = (filter) => {
     setActiveFilter(filter)
+    trackPortfolioFilter(filter)
     if (filter === 'All') {
       setSearchParams({})
     } else {

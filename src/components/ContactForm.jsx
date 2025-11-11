@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Lock, CheckCircle, Loader2 } from 'lucide-react'
+import { trackFormSubmit } from '../utils/gtm'
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -34,6 +35,9 @@ const ContactForm = () => {
     await new Promise(resolve => setTimeout(resolve, 2000))
     
     console.log('Form submitted:', data)
+    
+    // Track form submission
+    trackFormSubmit('contact_quote', 'quote_section')
     
     setIsSubmitting(false)
     setIsSuccess(true)

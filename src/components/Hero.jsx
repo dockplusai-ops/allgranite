@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Phone, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
+import { trackPhoneClick, trackCTAClick, trackPortfolioView } from '../utils/gtm'
 
 const Hero = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -132,7 +133,11 @@ const Hero = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              <a href="tel:7742077924" className={desktopPhoneButtonClasses}>
+              <a 
+                href="tel:7742077924" 
+                className={desktopPhoneButtonClasses}
+                onClick={() => trackPhoneClick('hero_desktop')}
+              >
                 <Phone className="w-4 h-4" />
                 Call Us
               </a>
@@ -243,7 +248,10 @@ const Hero = () => {
                 <Link
                   to="/portfolio"
                   className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    trackPortfolioView('header')
+                    setIsMobileMenuOpen(false)
+                  }}
                 >
                   Portfolio
                 </Link>
@@ -252,7 +260,10 @@ const Hero = () => {
                 <a
                   href="tel:7742077924"
                   className="flex items-center gap-2 py-3 px-4 bg-gold text-navy font-body font-bold rounded-lg hover:bg-gold/90 transition-colors duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    trackPhoneClick('hero_mobile')
+                    setIsMobileMenuOpen(false)
+                  }}
                 >
                   <Phone className="w-5 h-5" />
                   Call Now
@@ -284,13 +295,19 @@ const Hero = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-slide-up" style={{ animationDelay: '0.4s' }}>
               <button
-                onClick={() => handleSectionClick('#quote')}
+                onClick={() => {
+                  trackCTAClick('get_free_quote', 'hero')
+                  handleSectionClick('#quote')
+                }}
                 className="w-full sm:w-auto px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Get Free Quote
               </button>
               <button
-                onClick={() => handleSectionClick('#showroom')}
+                onClick={() => {
+                  trackCTAClick('visit_showroom', 'hero')
+                  handleSectionClick('#showroom')
+                }}
                 className="w-full sm:w-auto px-8 py-4 border-2 border-gold text-gold font-body font-semibold text-lg rounded-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105"
               >
                 Visit Showroom
