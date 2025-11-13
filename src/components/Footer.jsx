@@ -1,24 +1,25 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram } from 'lucide-react'
 import { trackPhoneClick, trackEmailClick, trackSocialClick, trackServiceClick, trackPortfolioView } from '../utils/gtm'
 
 const Footer = () => {
   const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Privacy Policy', href: '/privacy-policy' },
-    { name: 'Terms of Service', href: '/terms-of-service' }
+    { name: 'Home', href: '#home', isExternal: false },
+    { name: 'Services', href: '#services', isExternal: false },
+    { name: 'Portfolio', href: '/portfolio', isExternal: true },
+    { name: 'About Us', href: '#about', isExternal: false },
+    { name: 'Contact', href: '#contact', isExternal: false },
+    { name: 'Privacy Policy', href: '/privacy-policy', isExternal: true },
+    { name: 'Terms of Service', href: '/terms-of-service', isExternal: true }
   ]
 
   const services = [
-    { name: 'Kitchen Countertops', href: '/portfolio?filter=Kitchens' },
-    { name: 'Bathroom Vanities', href: '/portfolio?filter=Bathrooms' },
-    { name: 'Outdoor Kitchens', href: '/portfolio?filter=Outdoor' },
-    { name: 'Commercial Projects', href: '/portfolio?filter=Commercial' },
-    { name: 'Custom Works', href: '/#quote' }
+    { name: 'Kitchen Countertops', href: '/portfolio?filter=Kitchens', isExternal: true },
+    { name: 'Bathroom Vanities', href: '/portfolio?filter=Bathrooms', isExternal: true },
+    { name: 'Outdoor Kitchens', href: '/portfolio?filter=Outdoor', isExternal: true },
+    { name: 'Commercial Projects', href: '/portfolio?filter=Commercial', isExternal: true },
+    { name: 'Custom Works', href: '/#quote', isExternal: false }
   ]
 
   return (
@@ -34,17 +35,26 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="font-body text-white/80 hover:text-gold transition-colors duration-300"
-                    onClick={() => {
-                      if (link.name === 'Portfolio') {
-                        trackPortfolioView('footer')
-                      }
-                    }}
-                  >
-                    {link.name}
-                  </a>
+                  {link.isExternal ? (
+                    <Link
+                      to={link.href}
+                      className="font-body text-white/80 hover:text-gold transition-colors duration-300"
+                      onClick={() => {
+                        if (link.name === 'Portfolio') {
+                          trackPortfolioView('footer')
+                        }
+                      }}
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="font-body text-white/80 hover:text-gold transition-colors duration-300"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -58,13 +68,23 @@ const Footer = () => {
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service.name}>
-                  <a
-                    href={service.href}
-                    className="font-body text-white/80 hover:text-gold transition-colors duration-300"
-                    onClick={() => trackServiceClick(service.name)}
-                  >
-                    {service.name}
-                  </a>
+                  {service.isExternal ? (
+                    <Link
+                      to={service.href}
+                      className="font-body text-white/80 hover:text-gold transition-colors duration-300"
+                      onClick={() => trackServiceClick(service.name)}
+                    >
+                      {service.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={service.href}
+                      className="font-body text-white/80 hover:text-gold transition-colors duration-300"
+                      onClick={() => trackServiceClick(service.name)}
+                    >
+                      {service.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -145,19 +165,19 @@ const Footer = () => {
               © 2025 All Granite & Stone. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <a
-                href="#privacy"
+              <Link
+                to="/privacy-policy"
                 className="font-body text-white/60 hover:text-gold text-sm transition-colors duration-300"
               >
                 Privacy Policy
-              </a>
+              </Link>
               <span className="text-white/20">|</span>
-              <a
-                href="#terms"
+              <Link
+                to="/terms-of-service"
                 className="font-body text-white/60 hover:text-gold text-sm transition-colors duration-300"
               >
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>
