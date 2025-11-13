@@ -14,6 +14,8 @@ const ContactForm = lazy(() => import('./components/ContactForm'))
 const FinalCTASection = lazy(() => import('./components/FinalCTASection'))
 const Footer = lazy(() => import('./components/Footer'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const TermsOfService = lazy(() => import('./pages/TermsOfService'))
 
 const SectionFallback = () => (
   <div className="w-full py-16 md:py-24 animate-pulse bg-cream/30" aria-hidden="true" />
@@ -111,6 +113,22 @@ function App() {
             element={(
               <Suspense fallback={<SectionFallback />}>
                 <Portfolio />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/privacy-policy"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <PrivacyPolicy />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/terms-of-service"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <TermsOfService />
               </Suspense>
             )}
           />

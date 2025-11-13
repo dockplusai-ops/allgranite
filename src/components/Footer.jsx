@@ -8,7 +8,9 @@ const Footer = () => {
     { name: 'Services', href: '#services' },
     { name: 'Portfolio', href: '/portfolio' },
     { name: 'About Us', href: '#about' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Contact', href: '#contact' },
+    { name: 'Privacy Policy', href: '/privacy-policy' },
+    { name: 'Terms of Service', href: '/terms-of-service' }
   ]
 
   const services = [
