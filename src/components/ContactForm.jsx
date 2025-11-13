@@ -30,7 +30,22 @@ const ContactForm = () => {
         </div>
 
         {/* GHL Form Embed */}
-        <div className="bg-white rounded-lg shadow-lg animate-slide-up overflow-hidden">
+        <div className="bg-white rounded-lg shadow-lg animate-slide-up overflow-hidden p-6 md:p-8">
+          <style>
+            {`
+              #inline-zRsGmUvk5jOFGIsFM1qc {
+                min-height: 856px;
+              }
+              /* Style GHL form links to match site design */
+              #inline-zRsGmUvk5jOFGIsFM1qc a {
+                color: #d4af37 !important;
+                text-decoration: underline !important;
+              }
+              #inline-zRsGmUvk5jOFGIsFM1qc a:hover {
+                color: #b8941f !important;
+              }
+            `}
+          </style>
           <iframe
             src="https://api.leadconnectorhq.com/widget/form/zRsGmUvk5jOFGIsFM1qc"
             style={{
