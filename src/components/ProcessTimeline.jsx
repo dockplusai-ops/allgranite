@@ -27,8 +27,6 @@ const ProcessTimeline = () => {
           <img
             src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762373302/Captura_de_tela_de_2025-11-05_17-07-51_hvyozm.png"
             alt="Process timeline - Your Journey to Beautiful Stone"
-            width="1200"
-            height="400"
             className="w-full max-w-6xl h-auto rounded-lg shadow-lg"
           />
         </motion.div>

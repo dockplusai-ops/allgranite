@@ -93,8 +93,6 @@ const Hero = () => {
             loading="eager"
             fetchpriority="high"
             decoding="async"
-            width="1920"
-            height="1080"
             className="h-full w-full object-cover"
             aria-hidden="true"
             onLoad={() => setIsHeroLoaded(true)}
