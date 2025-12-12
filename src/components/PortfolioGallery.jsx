@@ -64,6 +64,8 @@ const PortfolioGallery = () => {
                   loading="lazy"
                   decoding="async"
                   sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
+                  width="800"
+                  height="600"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 
