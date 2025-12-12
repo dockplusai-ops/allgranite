@@ -279,10 +279,10 @@ const Hero = () => {
       {/* Hero Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Spacer for fixed header */}
-        <div className="h-12 lg:h-14"></div>
+        <div className="h-32 md:h-24 lg:h-14"></div>
 
         {/* Main Content - Centered */}
-        <div className="flex-1 flex items-center justify-center px-4 lg:px-8">
+        <div className="flex-1 flex items-center justify-center px-4 lg:px-8 pt-8 md:pt-0">
           <div className="text-center max-w-5xl mx-auto animate-fade-in">
             {/* Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-6 leading-tight animate-slide-up">
