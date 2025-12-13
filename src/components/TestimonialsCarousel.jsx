@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const TestimonialsCarousel = () => {
@@ -51,16 +51,17 @@ const TestimonialsCarousel = () => {
     }
   ]
 
-  const renderStars = () => {
+  // Memoize stars to avoid recreating on every render
+  const stars = useMemo(() => {
     return Array.from({ length: 5 }).map((_, index) => (
       <Star
         key={index}
         className="w-5 h-5 fill-gold text-gold"
       />
     ))
-  }
+  }, [])
 
-  const scrollToIndex = (index) => {
+  const scrollToIndex = useCallback((index) => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current
       const cardWidth = container.offsetWidth
@@ -70,30 +71,65 @@ const TestimonialsCarousel = () => {
       })
       setCurrentIndex(index)
     }
-  }
+  }, [])
 
-  const handlePrev = () => {
-    const newIndex = currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1
-    scrollToIndex(newIndex)
-  }
+  const handlePrev = useCallback(() => {
+    setCurrentIndex(prev => {
+      const newIndex = prev === 0 ? testimonials.length - 1 : prev - 1
+      if (scrollContainerRef.current) {
+        const container = scrollContainerRef.current
+        const cardWidth = container.offsetWidth
+        container.scrollTo({
+          left: cardWidth * newIndex,
+          behavior: 'smooth'
+        })
+      }
+      return newIndex
+    })
+  }, [testimonials.length])
 
-  const handleNext = () => {
-    const newIndex = currentIndex === testimonials.length - 1 ? 0 : currentIndex + 1
-    scrollToIndex(newIndex)
-  }
+  const handleNext = useCallback(() => {
+    setCurrentIndex(prev => {
+      const newIndex = prev === testimonials.length - 1 ? 0 : prev + 1
+      if (scrollContainerRef.current) {
+        const container = scrollContainerRef.current
+        const cardWidth = container.offsetWidth
+        container.scrollTo({
+          left: cardWidth * newIndex,
+          behavior: 'smooth'
+        })
+      }
+      return newIndex
+    })
+  }, [testimonials.length])
 
-  // Autoplay
+  // Autoplay - optimized with requestIdleCallback
   useEffect(() => {
-    autoplayRef.current = setInterval(() => {
-      handleNext()
-    }, 5000)
+    const startAutoplay = () => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          autoplayRef.current = setInterval(() => {
+            handleNext()
+          }, 5000)
+        })
+      } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(() => {
+          autoplayRef.current = setInterval(() => {
+            handleNext()
+          }, 5000)
+        }, 100)
+      }
+    }
+
+    startAutoplay()
 
     return () => {
       if (autoplayRef.current) {
         clearInterval(autoplayRef.current)
       }
     }
-  }, [currentIndex])
+  }, [handleNext])
 
   // Pause autoplay on hover
   const handleMouseEnter = () => {
@@ -133,7 +169,7 @@ const TestimonialsCarousel = () => {
                   <div className="bg-white rounded-lg p-6 md:p-8 shadow-md h-full flex flex-col">
                     {/* 5-Star Rating */}
                     <div className="flex gap-1 mb-4">
-                      {renderStars()}
+                      {stars}
                     </div>
 
                     {/* Quote Text */}

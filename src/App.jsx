@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Hero from './components/Hero'
 import LazySection from './components/LazySection'
 
+// Lazy load components with code splitting
 const QuickBenefitsBar = lazy(() => import('./components/QuickBenefitsBar'))
 const ServicesShowcase = lazy(() => import('./components/ServicesShowcase'))
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'))
@@ -13,9 +14,17 @@ const ServiceAreaMap = lazy(() => import('./components/ServiceAreaMap'))
 const ContactForm = lazy(() => import('./components/ContactForm'))
 const FinalCTASection = lazy(() => import('./components/FinalCTASection'))
 const Footer = lazy(() => import('./components/Footer'))
-const Portfolio = lazy(() => import('./pages/Portfolio'))
-const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
-const TermsOfService = lazy(() => import('./pages/TermsOfService'))
+
+// Route-based code splitting - pages loaded only when route is accessed
+const Portfolio = lazy(() => 
+  import('./pages/Portfolio').then(module => ({ default: module.default }))
+)
+const PrivacyPolicy = lazy(() => 
+  import('./pages/PrivacyPolicy').then(module => ({ default: module.default }))
+)
+const TermsOfService = lazy(() => 
+  import('./pages/TermsOfService').then(module => ({ default: module.default }))
+)
 
 const SectionFallback = () => (
   <div className="w-full py-16 md:py-24 animate-pulse bg-cream/30" aria-hidden="true" />

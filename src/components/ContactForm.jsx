@@ -1,18 +1,41 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 const ContactForm = () => {
+  const formRef = useRef(null)
+  const scriptLoaded = useRef(false)
+
   useEffect(() => {
-    // Load GHL form embed script
-    const script = document.createElement('script')
-    script.src = 'https://link.msgsndr.com/js/form_embed.js'
-    script.async = true
-    document.body.appendChild(script)
+    const formElement = formRef.current
+    if (!formElement || scriptLoaded.current) return
+
+    // Use Intersection Observer to load script only when form is visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !scriptLoaded.current) {
+            scriptLoaded.current = true
+            
+            // Load GHL form embed script only when visible
+            const script = document.createElement('script')
+            script.src = 'https://link.msgsndr.com/js/form_embed.js'
+            script.async = true
+            document.body.appendChild(script)
+
+            // Stop observing once script is loaded
+            observer.disconnect()
+          }
+        })
+      },
+      {
+        rootMargin: '100px', // Start loading 100px before form is visible
+        threshold: 0.1
+      }
+    )
+
+    observer.observe(formElement)
 
     return () => {
-      // Cleanup script on unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
-      }
+      observer.disconnect()
     }
   }, [])
 
@@ -30,8 +53,9 @@ const ContactForm = () => {
         </div>
 
         {/* GHL Form Embed */}
-        <div className="animate-slide-up">
+        <div ref={formRef} className="animate-slide-up">
           <iframe
+            loading="lazy"
             src="https://api.leadconnectorhq.com/widget/form/zRsGmUvk5jOFGIsFM1qc"
             style={{
               width: '100%',
