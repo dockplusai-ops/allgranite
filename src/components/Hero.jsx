@@ -117,10 +117,16 @@ const Hero = () => {
             <Link to="/" className="flex items-center space-x-3">
               <div className="relative w-28 h-28 lg:w-36 lg:h-36 flex-shrink-0 -my-4">
                 <img 
-                  src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif"
+                  src="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_112/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif"
+                  srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_112/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif 112w,
+                          https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_144/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif 144w,
+                          https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_196/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif 196w,
+                          https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_224/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif 224w,
+                          https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_288/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif 288w"
                   alt="All Granite & Stone Logo"
-                  width="144"
-                  height="144"
+                  sizes="(min-width: 1024px) 144px, 112px"
+                  width="196"
+                  height="111"
                   className="w-full h-full object-contain"
                   loading="eager"
                   fetchpriority="high"

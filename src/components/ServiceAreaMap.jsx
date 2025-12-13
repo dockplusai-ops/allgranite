@@ -37,13 +37,17 @@ const ServiceAreaMap = () => {
               {/* Map Image */}
               <div className="relative w-full">
                 <img
-                  src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535830/20_wvpyet.webp"
+                  src="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_600/v1762535830/20_wvpyet.webp"
+                  srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_400/v1762535830/20_wvpyet.webp 400w,
+                          https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_581/v1762535830/20_wvpyet.webp 581w,
+                          https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_800/v1762535830/20_wvpyet.webp 800w,
+                          https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_994/v1762535830/20_wvpyet.webp 994w"
                   alt="Map of Cape Cod, Nantucket, and Martha's Vineyard service area"
                   loading="lazy"
                   decoding="async"
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  width="800"
-                  height="600"
+                  width="994"
+                  height="1024"
                   className="w-full h-auto rounded-lg"
                 />
                 
