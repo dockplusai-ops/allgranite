@@ -1,34 +1,14 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
+import { PhotoProvider, PhotoView } from 'react-photo-view'
+import 'react-photo-view/dist/react-photo-view.css'
 import Footer from '../components/Footer'
 import Hero from '../components/Hero'
 import { trackPortfolioFilter } from '../utils/gtm'
 
-// Lazy load react-photo-view CSS and components only when needed
-let PhotoProvider, PhotoView
-
-const loadPhotoView = () => {
-  if (!PhotoProvider) {
-    return import('react-photo-view').then(module => {
-      PhotoProvider = module.PhotoProvider
-      PhotoView = module.PhotoView
-      return import('react-photo-view/dist/react-photo-view.css')
-    })
-  }
-  return Promise.resolve()
-}
-
 const Portfolio = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [activeFilter, setActiveFilter] = useState('All')
-  const [photoViewLoaded, setPhotoViewLoaded] = useState(false)
-
-  // Load react-photo-view only when component mounts
-  useEffect(() => {
-    loadPhotoView().then(() => {
-      setPhotoViewLoaded(true)
-    })
-  }, [])
 
   const projects = [
     {
@@ -134,7 +114,7 @@ const Portfolio = () => {
     }
   }, [searchParams])
 
-  const handleFilterChange = useCallback((filter) => {
+  const handleFilterChange = (filter) => {
     setActiveFilter(filter)
     trackPortfolioFilter(filter)
     if (filter === 'All') {
@@ -142,14 +122,11 @@ const Portfolio = () => {
     } else {
       setSearchParams({ filter })
     }
-  }, [setSearchParams])
+  }
 
-  // Memoize filtered projects to avoid recalculating on every render
-  const filteredProjects = useMemo(() => {
-    return activeFilter === 'All' 
-      ? projects 
-      : projects.filter(project => project.category === activeFilter)
-  }, [activeFilter])
+  const filteredProjects = activeFilter === 'All' 
+    ? projects 
+    : projects.filter(project => project.category === activeFilter)
 
   return (
     <div className="min-h-screen bg-cream">
@@ -182,18 +159,17 @@ const Portfolio = () => {
           </div>
 
           {/* Gallery Grid */}
-          {photoViewLoaded && PhotoProvider && PhotoView ? (
-            <PhotoProvider>
-              <div
-                key={activeFilter}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-              >
-                {filteredProjects.map((project, index) => (
-                  <div
-                    key={project.id}
-                    className="group relative overflow-hidden rounded-lg cursor-pointer animate-slide-up"
-                    style={{ animationDelay: `${index * 0.05}s` }}
-                  >
+          <PhotoProvider>
+            <div
+              key={activeFilter}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            >
+              {filteredProjects.map((project, index) => (
+                <div
+                  key={project.id}
+                  className="group relative overflow-hidden rounded-lg cursor-pointer animate-slide-up"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
                     <PhotoView src={project.image}>
                       <div className="relative aspect-[4/3] overflow-hidden">
                         {/* Image with Lazy Loading */}
@@ -225,41 +201,7 @@ const Portfolio = () => {
                   </div>
                 ))}
               </div>
-            </PhotoProvider>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {filteredProjects.map((project, index) => (
-                <div
-                  key={project.id}
-                  className="group relative overflow-hidden rounded-lg cursor-pointer animate-slide-up"
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="lazy"
-                      decoding="async"
-                      sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      width="800"
-                      height="600"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/70 transition-all duration-300 flex flex-col justify-end p-6">
-                      <div className="transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-75">
-                        <h3 className="text-white font-display font-bold text-xl md:text-2xl mb-1">
-                          {project.title}
-                        </h3>
-                        <p className="text-cream font-body text-sm md:text-base">
-                          {project.material}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+          </PhotoProvider>
 
           {/* Back to Home Button */}
           <div className="text-center mt-12 md:mt-16 animate-slide-up">
