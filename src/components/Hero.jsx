@@ -135,7 +135,7 @@ const Hero = () => {
 
             {/* Mobile Call Us Button */}
             <a 
-              href="tel:7742077924" 
+              href="tel:5083757785" 
               className={`lg:hidden flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 text-sm font-body font-semibold ${
                 isScrolled
                   ? 'border-navy/70 text-navy hover:bg-navy hover:text-white'
@@ -150,7 +150,7 @@ const Hero = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               <a 
-                href="tel:7742077924" 
+                href="tel:5083757785" 
                 className={desktopPhoneButtonClasses}
                 onClick={() => trackPhoneClick('hero_desktop')}
               >
@@ -274,7 +274,7 @@ const Hero = () => {
               </li>
               <li className="pt-4 border-t border-gray-200">
                 <a
-                  href="tel:7742077924"
+                  href="tel:5083757785"
                   className="flex items-center gap-2 py-3 px-4 bg-gold text-navy font-body font-bold rounded-lg hover:bg-gold/90 transition-colors duration-300"
                   onClick={() => {
                     trackPhoneClick('hero_mobile')

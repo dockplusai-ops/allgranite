@@ -179,7 +179,7 @@ npm run build
 ## 📞 Support
 
 For questions or issues, please contact:
-- **Phone**: (774) 207-7924
+- **Phone**: (508) 375-7785
 - **Email**: info@allgraniteandstone.com
 - **Address**: 207 Iyannough Rd, Hyannis, MA 02601
 

@@ -99,11 +99,11 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-gold flex-shrink-0 mt-1" />
                 <a
-                  href="tel:7742077924"
+                  href="tel:5083757785"
                   className="font-body text-white/80 hover:text-gold transition-colors duration-300"
                   onClick={() => trackPhoneClick('footer')}
                 >
-                  (774) 207-7924
+                  (508) 375-7785
                 </a>
               </li>
               <li className="flex items-start gap-3">

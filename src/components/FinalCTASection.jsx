@@ -63,7 +63,7 @@ const FinalCTASection = () => {
 
           {/* Phone Number */}
           <a
-            href="tel:7742077924"
+            href="tel:5083757785"
             className="inline-flex items-center gap-3 text-white hover:text-gold transition-all duration-300 hover:scale-105"
             onClick={() => trackPhoneClick('final_cta')}
           >
@@ -71,7 +71,7 @@ const FinalCTASection = () => {
               <Phone className="w-7 h-7 md:w-8 md:h-8 text-gold" />
             </div>
             <span className="text-3xl md:text-4xl lg:text-5xl font-body font-bold">
-              (774) 207-7924
+              (508) 375-7785
             </span>
           </a>
 

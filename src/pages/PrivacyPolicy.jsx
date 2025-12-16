@@ -298,7 +298,7 @@ const PrivacyPolicy = () => {
               </p>
               <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
                 <p className="font-bold text-navy mb-2">All Granite And Stone Inc</p>
-                <p>Phone: <a href="tel:+17742077924" className="text-gold hover:underline">+1 (774) 207-7924</a></p>
+                <p>Phone: <a href="tel:+15083757785" className="text-gold hover:underline">+1 (508) 375-7785</a></p>
                 <p>Email: <a href="mailto:contact@allgraniteandstone.com" className="text-gold hover:underline">contact@allgraniteandstone.com</a></p>
                 <p>Website: <a href="https://allgraniteandstone.com" className="text-gold hover:underline">https://allgraniteandstone.com</a></p>
               </div>

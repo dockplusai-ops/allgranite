@@ -129,11 +129,11 @@ const ServiceAreaMap = () => {
               <div className="flex items-center gap-4">
                 <Phone className="w-6 h-6 text-gold flex-shrink-0" />
                 <a
-                  href="tel:7742077924"
+                  href="tel:5083757785"
                   className="text-navy font-body font-semibold text-base md:text-lg hover:text-gold transition-colors duration-300"
                   onClick={() => trackPhoneClick('showroom')}
                 >
-                  (774) 207-7924
+                  (508) 375-7785
                 </a>
               </div>
 
