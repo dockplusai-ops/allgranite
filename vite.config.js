@@ -14,9 +14,14 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              // Separar React e React DOM em chunks separados para melhor cache
-              if (id.includes('react-dom')) return 'vendor-react-dom'
-              if (id.includes('react')) return 'vendor-react'
+              // React e ReactDOM DEVEM estar juntos no mesmo chunk para evitar erros de internals
+              // Verificar exatamente os pacotes react e react-dom (não outros que contêm "react")
+              if (id.includes('node_modules/react-dom') || 
+                  (id.includes('node_modules/react/') && !id.includes('react-dom') && 
+                   !id.includes('react-router') && !id.includes('react-hook') && 
+                   !id.includes('react-photo'))) {
+                return 'vendor-react'
+              }
               // Separar bibliotecas grandes em chunks próprios
               if (id.includes('framer-motion')) return 'vendor-framer-motion'
               if (id.includes('swiper')) return 'vendor-swiper'
