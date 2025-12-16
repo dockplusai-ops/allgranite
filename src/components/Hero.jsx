@@ -114,7 +114,7 @@ const Hero = () => {
         <nav className="container mx-auto px-4 lg:px-8 py-0">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center">
               <div className="relative w-28 h-28 lg:w-36 lg:h-36 flex-shrink-0 -my-4">
                 <img 
                   src="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_112/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif"
@@ -129,15 +129,23 @@ const Hero = () => {
                   height="111"
                   className="w-full h-full object-contain"
                   loading="eager"
-                  fetchpriority="high"
                 />
               </div>
-              <span className={`font-display text-base lg:text-lg font-bold transition-colors duration-300 ${
-                isScrolled ? 'text-navy lg:text-white' : 'text-white'
-              }`}>
-                All Granite & Stone
-              </span>
             </Link>
+
+            {/* Mobile Call Us Button */}
+            <a 
+              href="tel:7742077924" 
+              className={`lg:hidden flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 text-sm font-body font-semibold ${
+                isScrolled
+                  ? 'border-navy/70 text-navy hover:bg-navy hover:text-white'
+                  : 'border-cream/80 text-cream hover:bg-cream hover:text-navy'
+              }`}
+              onClick={() => trackPhoneClick('hero_mobile_navbar')}
+            >
+              <Phone className="w-4 h-4" />
+              Call Us
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
