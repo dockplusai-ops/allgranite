@@ -14,10 +14,9 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              // Agrupar React e ReactDOM juntos - eles precisam estar no mesmo chunk
-              if (id.includes('react-dom') || id.includes('/react/')) {
-                return 'vendor-react'
-              }
+              // Separar React e React DOM em chunks separados para melhor cache
+              if (id.includes('react-dom')) return 'vendor-react-dom'
+              if (id.includes('react')) return 'vendor-react'
               // Separar bibliotecas grandes em chunks próprios
               if (id.includes('framer-motion')) return 'vendor-framer-motion'
               if (id.includes('swiper')) return 'vendor-swiper'
