@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     base: '/',
     build: {
-      target: 'es2017',
+      target: 'es2015',
       cssCodeSplit: true,
       sourcemap: enableSourceMap,
       outDir: 'dist',
