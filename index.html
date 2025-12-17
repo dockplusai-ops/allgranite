@@ -116,7 +116,10 @@
     <!-- Preload critical fonts (400, 700) - Latin subset only -->
     <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgA.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <!-- Defer non-critical CSS: Google Fonts -->
+    <!-- Defer non-critical CSS: Google Fonts - Mobile optimized -->
+    <!-- Critical font weights (400) are preloaded above and in critical CSS -->
+    <!-- Non-critical weights (600, 700) are loaded via deferred stylesheet below -->
+    <!-- font-display=swap prevents FOIT and allows text to render immediately -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"></noscript>
     <!-- Critical CSS Inline - Expanded for Hero and above-the-fold content -->
@@ -127,9 +130,10 @@
       body{font-family:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;overflow-x:hidden;color:#16213e;line-height:1.6}
       :root{--navy:#16213e;--gold:#d4af37;--cream:#f5f5f0}
       
-      /* Font display swap to prevent FOIT */
+      /* Font display swap to prevent FOIT - Optimized for mobile */
       @font-face{font-family:'Montserrat';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2202,U+2212,U+2215,U+FEFF,U+FFFD}
       @font-face{font-family:'Playfair Display';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgA.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2202,U+2212,U+2215,U+FEFF,U+FFFD}
+      /* Non-critical font weights (600, 700) are loaded lazily via script below */
       
       /* Container utilities */
       .container{width:100%;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
@@ -252,9 +256,13 @@
       .max-w-5xl{max-width:64rem}
       .mx-auto{margin-left:auto;margin-right:auto}
     </style>
-    <!-- Script to defer non-critical CSS using print media trick -->
+    <!-- Script to defer non-critical CSS using print media trick - Optimized for mobile -->
     <script>
       (function(){
+        // Detect mobile for more aggressive deferring
+        var isMobile = window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        var mobileDelay = isMobile ? 1500 : 300; // Longer delay on mobile
+        
         function deferNonCriticalCSS() {
           var links = document.querySelectorAll('link[rel="stylesheet"]:not([data-deferred]):not([href*="fonts.googleapis.com"])');
           links.forEach(function(link) {
@@ -264,19 +272,32 @@
             link.onload = function() {
               this.media = originalMedia;
             };
-            // Fallback for browsers that don't fire onload reliably
+            // Fallback with mobile-optimized delay
             setTimeout(function() {
               if (link.media === 'print') {
                 link.media = originalMedia;
               }
-            }, 300);
+            }, mobileDelay);
           });
         }
-        // Run immediately and also after DOMContentLoaded
-        deferNonCriticalCSS();
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', deferNonCriticalCSS);
+        
+        // On mobile, delay initial defer to reduce render-blocking
+        if (isMobile) {
+          setTimeout(function() {
+            deferNonCriticalCSS();
+          }, 100);
+        } else {
+          deferNonCriticalCSS();
         }
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() {
+            if (!isMobile) {
+              deferNonCriticalCSS();
+            }
+          });
+        }
+        
         // Use MutationObserver to catch dynamically injected stylesheets (Vite)
         if (window.MutationObserver) {
           var observer = new MutationObserver(function(mutations) {
@@ -289,7 +310,12 @@
               });
             });
             if (hasNewStylesheet) {
-              deferNonCriticalCSS();
+              // On mobile, add small delay before deferring new stylesheets
+              if (isMobile) {
+                setTimeout(deferNonCriticalCSS, 50);
+              } else {
+                deferNonCriticalCSS();
+              }
             }
           });
           observer.observe(document.head, { childList: true, subtree: true });

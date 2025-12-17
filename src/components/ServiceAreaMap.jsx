@@ -34,20 +34,41 @@ const ServiceAreaMap = () => {
           {/* LEFT COLUMN - Map */}
           <div className="relative">
             <div className="bg-cream rounded-lg p-6 md:p-8 shadow-lg relative">
-              {/* Map Image */}
+              {/* Map Image - Optimized with AVIF */}
               <div className="relative w-full">
-                <img
-                  src="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_400/v1762535830/20_wvpyet.webp"
-                  srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_400/v1762535830/20_wvpyet.webp 400w,
-                          https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_581/v1762535830/20_wvpyet.webp 581w"
-                  alt="Map of Cape Cod, Nantucket, and Martha's Vineyard service area"
-                  loading="lazy"
-                  decoding="async"
-                  sizes="(min-width: 1024px) 581px, 100vw"
-                  width="581"
-                  height="598"
-                  className="w-full h-auto rounded-lg"
-                />
+                <picture>
+                  {/* AVIF sources - mobile optimized with lower quality */}
+                  <source 
+                    type="image/avif" 
+                    media="(max-width: 1023px)"
+                    srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_65,w_400/v1762535830/20_wvpyet.webp 400w"
+                  />
+                  <source 
+                    type="image/avif" 
+                    srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_581/v1762535830/20_wvpyet.webp 581w"
+                  />
+                  {/* WebP fallback */}
+                  <source 
+                    type="image/webp" 
+                    media="(max-width: 1023px)"
+                    srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_65,w_400/v1762535830/20_wvpyet.webp 400w"
+                  />
+                  <source 
+                    type="image/webp" 
+                    srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_581/v1762535830/20_wvpyet.webp 581w"
+                  />
+                  {/* Fallback image */}
+                  <img
+                    src="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_65,w_400/v1762535830/20_wvpyet.webp"
+                    alt="Map of Cape Cod, Nantucket, and Martha's Vineyard service area"
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(min-width: 1024px) 581px, 100vw"
+                    width="581"
+                    height="598"
+                    className="w-full h-auto rounded-lg"
+                  />
+                </picture>
                 
                 {/* Pin Marker at Hyannis Location */}
                 <div className="absolute top-[42%] left-[55%] transform -translate-x-1/2 -translate-y-1/2 z-10">

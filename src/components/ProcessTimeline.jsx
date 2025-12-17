@@ -24,13 +24,48 @@ const ProcessTimeline = () => {
           transition={{ duration: 0.6 }}
           className="w-full flex justify-center"
         >
-          <img
-            src="https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762373302/Captura_de_tela_de_2025-11-05_17-07-51_hvyozm.png"
-            alt="Process timeline - Your Journey to Beautiful Stone"
-            width="1200"
-            height="400"
-            className="w-full max-w-6xl h-auto rounded-lg shadow-lg"
-          />
+          <picture>
+            {/* AVIF sources - mobile optimized with lower quality */}
+            <source 
+              type="image/avif" 
+              media="(max-width: 767px)"
+              srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_65,w_800/v1762373302/Captura_de_tela_de_2025-11-05_17-07-51_hvyozm.png 800w"
+            />
+            <source 
+              type="image/avif" 
+              media="(max-width: 1023px)"
+              srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_70,w_1000/v1762373302/Captura_de_tela_de_2025-11-05_17-07-51_hvyozm.png 1000w"
+            />
+            <source 
+              type="image/avif" 
+              srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_1200/v1762373302/Captura_de_tela_de_2025-11-05_17-07-51_hvyozm.png 1200w"
+            />
+            {/* WebP fallback */}
+            <source 
+              type="image/webp" 
+              media="(max-width: 767px)"
+              srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_65,w_800/v1762373302/Captura_de_tela_de_2025-11-05_17-07-51_hvyozm.png 800w"
+            />
+            <source 
+              type="image/webp" 
+              media="(max-width: 1023px)"
+              srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_70,w_1000/v1762373302/Captura_de_tela_de_2025-11-05_17-07-51_hvyozm.png 1000w"
+            />
+            <source 
+              type="image/webp" 
+              srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_1200/v1762373302/Captura_de_tela_de_2025-11-05_17-07-51_hvyozm.png 1200w"
+            />
+            {/* Fallback image */}
+            <img
+              src="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_65,w_800/v1762373302/Captura_de_tela_de_2025-11-05_17-07-51_hvyozm.png"
+              alt="Process timeline - Your Journey to Beautiful Stone"
+              width="1200"
+              height="400"
+              loading="lazy"
+              decoding="async"
+              className="w-full max-w-6xl h-auto rounded-lg shadow-lg"
+            />
+          </picture>
         </motion.div>
 
         {/* CTA Button */}

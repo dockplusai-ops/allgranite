@@ -172,17 +172,50 @@ const Portfolio = () => {
                 >
                     <PhotoView src={project.image}>
                       <div className="relative aspect-[4/3] overflow-hidden">
-                        {/* Image with Lazy Loading */}
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          loading="lazy"
-                          decoding="async"
-                          sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                          width="800"
-                          height="600"
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
+                        {/* Optimized Image with AVIF and WebP support */}
+                        <picture>
+                          {/* AVIF sources - mobile optimized with lower quality */}
+                          <source 
+                            type="image/avif" 
+                            media="(max-width: 767px)"
+                            srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_65,w_400${project.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 400w`}
+                          />
+                          <source 
+                            type="image/avif" 
+                            media="(max-width: 1279px)"
+                            srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_70,w_600${project.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 600w`}
+                          />
+                          <source 
+                            type="image/avif" 
+                            srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_800${project.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 800w`}
+                          />
+                          {/* WebP fallback */}
+                          <source 
+                            type="image/webp" 
+                            media="(max-width: 767px)"
+                            srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_65,w_400${project.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 400w`}
+                          />
+                          <source 
+                            type="image/webp" 
+                            media="(max-width: 1279px)"
+                            srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_70,w_600${project.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 600w`}
+                          />
+                          <source 
+                            type="image/webp" 
+                            srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_800${project.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 800w`}
+                          />
+                          {/* Fallback image */}
+                          <img
+                            src={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_65,w_400${project.image.match(/\/v\d+\/[^/]+$/)?.[0] || project.image}`}
+                            alt={project.title}
+                            loading="lazy"
+                            decoding="async"
+                            sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                            width="800"
+                            height="600"
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </picture>
                         
                         {/* Dark Overlay on Hover */}
                         <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/70 transition-all duration-300 flex flex-col justify-end p-6">

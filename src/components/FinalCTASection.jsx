@@ -11,14 +11,34 @@ const FinalCTASection = () => {
 
   return (
     <section className="relative w-full py-20 md:py-32 px-4 lg:px-8 overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Background Image with Overlay - Optimized for mobile */}
       <div className="absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)'
-          }}
-        />
+        <picture className="absolute inset-0 w-full h-full">
+          {/* Mobile optimized - smaller width and lower quality */}
+          <source 
+            type="image/webp" 
+            media="(max-width: 767px)"
+            srcSet="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70 800w"
+          />
+          <source 
+            type="image/webp" 
+            media="(max-width: 1023px)"
+            srcSet="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75 1200w"
+          />
+          <source 
+            type="image/webp" 
+            srcSet="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80 2070w"
+          />
+          {/* Fallback image */}
+          <img
+            src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            aria-hidden="true"
+          />
+        </picture>
         <div className="absolute inset-0 bg-navy opacity-50"></div>
       </div>
 

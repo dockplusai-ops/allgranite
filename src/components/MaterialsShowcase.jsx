@@ -91,12 +91,49 @@ const MaterialsShowcase = () => {
                 index === 4 ? 'md:col-span-2 lg:col-span-1' : ''
               }`}
             >
-              {/* Background Image */}
+              {/* Background Image - Optimized */}
               <div className="absolute inset-0">
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${material.image})` }}
-                />
+                <picture className="absolute inset-0 w-full h-full">
+                  {/* AVIF sources - mobile optimized with lower quality */}
+                  <source 
+                    type="image/avif" 
+                    media="(max-width: 767px)"
+                    srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_65,w_600${material.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 600w`}
+                  />
+                  <source 
+                    type="image/avif" 
+                    media="(max-width: 1023px)"
+                    srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_70,w_800${material.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 800w`}
+                  />
+                  <source 
+                    type="image/avif" 
+                    srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_1200${material.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 1200w`}
+                  />
+                  {/* WebP fallback */}
+                  <source 
+                    type="image/webp" 
+                    media="(max-width: 767px)"
+                    srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_65,w_600${material.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 600w`}
+                  />
+                  <source 
+                    type="image/webp" 
+                    media="(max-width: 1023px)"
+                    srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_70,w_800${material.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 800w`}
+                  />
+                  <source 
+                    type="image/webp" 
+                    srcSet={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_1200${material.image.match(/\/v\d+\/[^/]+$/)?.[0] || ''} 1200w`}
+                  />
+                  {/* Fallback image */}
+                  <img
+                    src={`https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_65,w_600${material.image.match(/\/v\d+\/[^/]+$/)?.[0] || material.image}`}
+                    alt={material.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    aria-hidden="true"
+                  />
+                </picture>
                 {/* Dark Overlay - Top portion */}
                 <div className="absolute top-0 left-0 right-0 h-2/5 bg-gradient-to-b from-navy/90 via-navy/60 to-transparent transition-all duration-300" />
                 {/* Dark Overlay - Bottom portion */}
