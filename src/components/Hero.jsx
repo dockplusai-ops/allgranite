@@ -16,11 +16,20 @@ const Hero = () => {
       : 'border-cream/80 text-cream hover:bg-cream hover:text-navy'
   }`
 
+  // Hero image sources with AVIF (preferred) and WebP (fallback) formats
   const heroImageSources = {
-    xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1920/v1762535831/1_o5smft.webp',
-    lg: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_1440/v1762535831/1_o5smft.webp',
-    md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_auto,w_800/v1762535831/1_o5smft.webp',
-    sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_60,w_360/v1762535831/1_o5smft.webp'
+    avif: {
+      xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_1920/v1762535831/1_o5smft.webp',
+      lg: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_1440/v1762535831/1_o5smft.webp',
+      md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_800/v1762535831/1_o5smft.webp',
+      sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_360/v1762535831/1_o5smft.webp'
+    },
+    webp: {
+      xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_1920/v1762535831/1_o5smft.webp',
+      lg: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_1440/v1762535831/1_o5smft.webp',
+      md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_800/v1762535831/1_o5smft.webp',
+      sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_360/v1762535831/1_o5smft.webp'
+    }
   }
 
   // Helper function to handle navigation and scroll
@@ -83,11 +92,19 @@ const Hero = () => {
           aria-hidden="true"
         />
         <picture className={`absolute inset-0 transition-opacity duration-700 ${isHeroLoaded ? 'opacity-100' : 'opacity-0'}`}>
-          <source media="(min-width: 1280px)" srcSet={heroImageSources.xl} />
-          <source media="(min-width: 1024px)" srcSet={heroImageSources.lg} />
-          <source media="(min-width: 768px)" srcSet={heroImageSources.md} />
+          {/* AVIF sources (preferred format for better compression) */}
+          <source type="image/avif" media="(min-width: 1280px)" srcSet={heroImageSources.avif.xl} />
+          <source type="image/avif" media="(min-width: 1024px)" srcSet={heroImageSources.avif.lg} />
+          <source type="image/avif" media="(min-width: 768px)" srcSet={heroImageSources.avif.md} />
+          <source type="image/avif" srcSet={heroImageSources.avif.sm} />
+          {/* WebP sources (fallback) */}
+          <source type="image/webp" media="(min-width: 1280px)" srcSet={heroImageSources.webp.xl} />
+          <source type="image/webp" media="(min-width: 1024px)" srcSet={heroImageSources.webp.lg} />
+          <source type="image/webp" media="(min-width: 768px)" srcSet={heroImageSources.webp.md} />
+          <source type="image/webp" srcSet={heroImageSources.webp.sm} />
+          {/* Fallback image */}
           <img
-            src={heroImageSources.sm}
+            src={heroImageSources.webp.sm}
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 100vw"
             alt="Luxury stone countertop kitchen with premium finishes"
             loading="eager"

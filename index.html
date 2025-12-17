@@ -296,11 +296,20 @@
         }
       })();
     </script>
+    <!-- Preload LCP image (AVIF preferred, WebP fallback) -->
     <link
       rel="preload"
       as="image"
-      href="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_auto,q_60,w_360/v1762535831/1_o5smft.webp"
+      href="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_360/v1762535831/1_o5smft.webp"
       fetchpriority="high"
+      type="image/avif"
+    >
+    <link
+      rel="preload"
+      as="image"
+      href="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_360/v1762535831/1_o5smft.webp"
+      fetchpriority="high"
+      type="image/webp"
     >
   </head>
   <body>
