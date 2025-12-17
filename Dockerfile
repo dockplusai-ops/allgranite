@@ -15,6 +15,9 @@ COPY . .
 # Build the application
 RUN npm run build
 
+# Verify build output
+RUN ls -la /app/dist && ls -la /app/dist/assets || true
+
 # Stage 2: Serve with nginx
 FROM nginx:alpine
 
