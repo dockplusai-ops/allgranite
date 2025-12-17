@@ -1,23 +1,49 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 const ContactForm = () => {
+  const sectionRef = useRef(null)
+  const [scriptLoaded, setScriptLoaded] = useState(false)
+
   useEffect(() => {
-    // Load GHL form embed script
-    const script = document.createElement('script')
-    script.src = 'https://link.msgsndr.com/js/form_embed.js'
-    script.async = true
-    document.body.appendChild(script)
+    const sectionElement = sectionRef.current
+    if (!sectionElement) return
+
+    // Load GHL form embed script only when section is visible or near
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !scriptLoaded) {
+            // Load script when section becomes visible
+            const script = document.createElement('script')
+            script.src = 'https://link.msgsndr.com/js/form_embed.js'
+            script.async = true
+            document.body.appendChild(script)
+            setScriptLoaded(true)
+            
+            // Disconnect observer after script is loaded
+            observer.disconnect()
+          }
+        })
+      },
+      {
+        rootMargin: '200px', // Start loading 200px before section is visible
+        threshold: 0.01 // Trigger when any part of the section is visible
+      }
+    )
+
+    observer.observe(sectionElement)
 
     return () => {
-      // Cleanup script on unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
-      }
+      observer.disconnect()
     }
-  }, [])
+  }, [scriptLoaded])
 
   return (
-    <section id="quote" className="w-full py-16 md:py-20 px-4 lg:px-8 bg-cream scroll-mt-20 lg:scroll-mt-24">
+    <section 
+      ref={sectionRef}
+      id="quote" 
+      className="w-full py-16 md:py-20 px-4 lg:px-8 bg-cream scroll-mt-20 lg:scroll-mt-24"
+    >
       <div className="max-w-3xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12 animate-fade-in">
@@ -51,6 +77,7 @@ const ContactForm = () => {
             data-layout-iframe-id="inline-zRsGmUvk5jOFGIsFM1qc"
             data-form-id="zRsGmUvk5jOFGIsFM1qc"
             title="Contact Website"
+            loading="lazy"
           />
         </div>
       </div>
