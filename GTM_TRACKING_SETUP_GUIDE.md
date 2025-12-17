@@ -655,7 +655,61 @@ Se tiver dúvidas durante a implementação:
 
 ---
 
+---
+
+## 🚀 Otimizações de Performance no GTM
+
+### Configuração de Scripts Condicionais para Melhor Performance
+
+Para melhorar o tempo de carregamento inicial da página, configure os seguintes scripts no GTM para carregar apenas quando necessário:
+
+#### 1. **reCAPTCHA - Carregar Apenas quando Formulário Estiver Visível**
+
+**Problema:** O CSS do reCAPTCHA (39.7 KiB) é carregado sempre, mesmo quando o formulário não está visível.
+
+**Solução:** Configurar o reCAPTCHA para carregar apenas quando o formulário estiver visível:
+
+1. No GTM, vá para **"Tags"** e encontre a tag do reCAPTCHA
+2. Clique para editar
+3. Em **"Acionamento"**, remova o acionador padrão (All Pages)
+4. Crie um novo acionador do tipo **"Intersection Observer"** ou **"Scroll Depth"**:
+   - Tipo: **"Element Visibility"**
+   - Selecionar elemento: **`#quote`** ou **`iframe[id*="zRsGmUvk"]`** (ID do formulário)
+   - Quando: **"50% visível"**
+5. Salve e publique
+
+**Benefício:** Economiza 39.7 KiB de CSS no carregamento inicial (~160ms de economia).
+
+#### 2. **Facebook Pixel - Carregar após Interação do Usuário**
+
+**Problema:** Facebook Pixel carrega scripts pesados no carregamento inicial.
+
+**Solução:** Configurar para carregar apenas após primeira interação:
+
+1. No GTM, encontre a tag do Facebook Pixel
+2. Crie um novo acionador do tipo **"Evento personalizado"**
+3. Nome do evento: **`gtm.click`** ou **`gtm.scroll`**
+4. Configure para disparar apenas uma vez por sessão
+5. Adicione este acionador à tag do Facebook Pixel
+6. Salve e publique
+
+#### 3. **Microsoft Clarity - Carregar após 3s ou Interação**
+
+**Problema:** Clarity pode impactar performance no carregamento inicial.
+
+**Solução:** Configurar delay de 3 segundos ou após primeira interação:
+
+1. No GTM, encontre a tag do Clarity
+2. Crie um novo acionador do tipo **"Timer"**
+3. Configure para disparar após **3 segundos**
+4. OU use acionador de evento personalizado similar ao Facebook Pixel
+5. Salve e publique
+
+**Nota:** Essas configurações devem ser testadas em ambiente de desenvolvimento antes de aplicar em produção.
+
+---
+
 **Documento criado em:** 11 de Novembro de 2025
-**Versão:** 1.0
-**Status:** ✅ Implementação Completa
+**Versão:** 1.1
+**Status:** ✅ Implementação Completa + Otimizações de Performance
 
