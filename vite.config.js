@@ -6,10 +6,14 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    base: '/',
     build: {
       target: 'es2015',
       cssCodeSplit: true,
       sourcemap: enableSourceMap,
+      outDir: 'dist',
+      assetsDir: 'assets',
+      emptyOutDir: true,
       rollupOptions: {
         output: {
           manualChunks(id) {
