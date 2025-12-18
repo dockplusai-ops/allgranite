@@ -22,13 +22,13 @@ const Hero = () => {
       xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_1920/v1762535831/1_o5smft.webp',
       lg: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_1440/v1762535831/1_o5smft.webp',
       md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_800/v1762535831/1_o5smft.webp',
-      sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_65,w_320/v1762535831/1_o5smft.webp'
+      sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_72,w_320/v1762535831/1_o5smft.webp'
     },
     webp: {
       xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_1920/v1762535831/1_o5smft.webp',
       lg: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_1440/v1762535831/1_o5smft.webp',
       md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_800/v1762535831/1_o5smft.webp',
-      sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_65,w_320/v1762535831/1_o5smft.webp'
+      sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_72,w_320/v1762535831/1_o5smft.webp'
     }
   }
 
