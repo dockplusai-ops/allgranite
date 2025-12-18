@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Phone, X } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
-import { trackPhoneClick, trackCTAClick, trackPortfolioView } from '../utils/gtm'
+import { Link } from 'react-router-dom'
+import { trackKitchenRenovationPhoneClick, trackKitchenRenovationCTAClick, trackPhoneClick, trackPortfolioView } from '../utils/gtm'
 
-const Hero = () => {
+const KitchenRemodelingHero = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isHeroLoaded, setIsHeroLoaded] = useState(false)
-  const location = useLocation()
-  const isPortfolioPage = location.pathname === '/portfolio'
-
-  const desktopPhoneButtonClasses = `flex items-center gap-2 px-5 py-2 rounded-full border transition-all duration-300 text-sm font-body font-semibold ${
-    isScrolled
-      ? 'border-gold bg-gold text-navy hover:bg-gold/90 hover:text-navy'
-      : 'border-cream/80 text-cream hover:bg-cream hover:text-navy'
-  }`
 
   // Hero image sources with AVIF (preferred) and WebP (fallback) formats
   const heroImageSources = {
@@ -32,33 +24,23 @@ const Hero = () => {
     }
   }
 
-  // Helper function to handle navigation and scroll
+  const handleScrollToForm = () => {
+    const element = document.querySelector('#quote')
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   const handleSectionClick = (hash) => {
-    if (isPortfolioPage) {
-      // If on portfolio page, navigate to home first
-      window.location.href = `/${hash}`
-    } else {
-      // If on home page, scroll to section
-      const element = document.querySelector(hash)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
+    const element = document.querySelector(hash)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
   const handleMenuNavigation = (hash) => {
     handleSectionClick(hash)
     setIsMobileMenuOpen(false)
-  }
-
-  // Helper function to create links that work on both pages
-  const createLink = (hash) => {
-    if (isPortfolioPage) {
-      // If on portfolio page, go to home first then scroll to section
-      return `/${hash}`
-    }
-    // If on home page, use hash directly
-    return hash
   }
 
   useEffect(() => {
@@ -81,8 +63,14 @@ const Hero = () => {
     }
   }, [isMobileMenuOpen])
 
+  const desktopPhoneButtonClasses = `flex items-center gap-2 px-5 py-2 rounded-full border transition-all duration-300 text-sm font-body font-semibold ${
+    isScrolled
+      ? 'border-gold bg-gold text-navy hover:bg-gold/90 hover:text-navy'
+      : 'border-cream/80 text-cream hover:bg-cream hover:text-navy'
+  }`
+
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-[600px] md:min-h-[700px] lg:min-h-screen w-full overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div
@@ -106,7 +94,7 @@ const Hero = () => {
           <img
             src={heroImageSources.webp.sm}
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 100vw"
-            alt="Luxury stone countertop kitchen with premium finishes"
+            alt="Beautiful kitchen renovation with premium stone countertops"
             loading="eager"
             fetchpriority="high"
             decoding="async"
@@ -138,7 +126,6 @@ const Hero = () => {
                   : 'w-28 h-28 lg:w-36 lg:h-36 -my-4'
               }`}>
                 <picture>
-                  {/* AVIF sources - mobile com qualidade menor para reduzir tamanho */}
                   <source 
                     type="image/avif" 
                     media="(max-width: 1023px)"
@@ -148,7 +135,6 @@ const Hero = () => {
                     type="image/avif" 
                     srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_144/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif 144w"
                   />
-                  {/* WebP fallback - mobile com qualidade menor */}
                   <source 
                     type="image/webp" 
                     media="(max-width: 1023px)"
@@ -158,7 +144,6 @@ const Hero = () => {
                     type="image/webp" 
                     srcSet="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_144/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif 144w"
                   />
-                  {/* Fallback image */}
                   <img 
                     src="https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_70,w_112/v1762537584/anjexfa3kt2o4wvtdu8r_gmd4vt.avif"
                     alt="All Granite & Stone Logo"
@@ -197,16 +182,6 @@ const Hero = () => {
                 Call Us
               </a>
               <button 
-                onClick={() => handleSectionClick('#showroom')} 
-                className={`transition-colors font-body font-medium ${
-                  isScrolled 
-                    ? 'text-white hover:text-gold' 
-                    : 'text-cream hover:text-gold'
-                }`}
-              >
-                Showroom
-              </button>
-              <button 
                 onClick={() => handleSectionClick('#quote')} 
                 className={`transition-colors font-body font-medium ${
                   isScrolled 
@@ -216,6 +191,16 @@ const Hero = () => {
               >
                 Get Quote
               </button>
+              <Link
+                to="/"
+                className={`transition-colors font-body font-medium ${
+                  isScrolled 
+                    ? 'text-white hover:text-gold' 
+                    : 'text-cream hover:text-gold'
+                }`}
+              >
+                Home
+              </Link>
             </div>
 
             {/* Mobile Hamburger Menu Button */}
@@ -268,28 +253,13 @@ const Hero = () => {
           <nav className="flex-1 px-6 py-4">
             <ul className="space-y-2">
               <li>
-                <button
-                  onClick={() => handleMenuNavigation('#home')}
-                  className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
+                <Link
+                  to="/"
+                  className="block py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Home
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleMenuNavigation('#services')}
-                  className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
-                >
-                  Services
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleMenuNavigation('#showroom')}
-                  className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
-                >
-                  Showroom
-                </button>
+                </Link>
               </li>
               <li>
                 <button
@@ -297,14 +267,6 @@ const Hero = () => {
                   className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
                 >
                   Get Quote
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleMenuNavigation('#contact')}
-                  className="w-full text-left py-3 text-navy font-body font-medium hover:text-gold transition-colors duration-300"
-                >
-                  Contact
                 </button>
               </li>
               <li>
@@ -338,47 +300,46 @@ const Hero = () => {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 min-h-screen flex flex-col">
+      <div className="relative z-10 min-h-[600px] md:min-h-[700px] lg:min-h-screen flex flex-col">
         {/* Spacer for fixed header */}
         <div className="h-32 md:h-24 lg:h-14"></div>
 
         {/* Main Content - Centered */}
         <div className="flex-1 flex items-center justify-center px-4 lg:px-8 pt-8 md:pt-0">
           <div className="text-center max-w-5xl mx-auto">
-            {/* Headline - Visible immediately, animation is enhancement only */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-6 leading-tight px-2">
-              Transform Your Cape Cod Home with Exquisite Stone Craftsmanship
+            {/* Headline */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-6 leading-tight px-2 animate-fade-in">
+              Transform Your Kitchen Into Your Dream Space
             </h1>
 
-            {/* Subheadline - Visible immediately */}
-            <p className="text-lg md:text-xl lg:text-2xl text-cream mb-12 font-body font-light max-w-4xl mx-auto">
-              Premium Granite, Marble, Quartz & Quartzite | Expert Installation | Quick Turnaround | Free Estimates
+            {/* Subheadline */}
+            <p className="text-lg md:text-xl lg:text-2xl text-cream mb-12 font-body font-light max-w-4xl mx-auto animate-fade-in">
+              Complete Kitchen Renovation | Custom Design | Professional Installation | Premium Materials
             </p>
 
-            {/* CTA Buttons - Visible immediately */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <button
-                onClick={() => {
-                  trackCTAClick('get_free_quote', 'hero')
-                  handleSectionClick('#quote')
-                }}
-                className="w-full sm:w-auto px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-slide-up">
+              <a
+                href="tel:5083757785"
+                onClick={() => trackKitchenRenovationPhoneClick('hero_primary')}
+                className="w-full sm:w-auto px-8 py-4 bg-gold text-navy font-body font-semibold text-lg rounded-lg hover:bg-gold/90 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
               >
-                Get Free Quote
-              </button>
+                <Phone className="w-5 h-5" />
+                Call Now for Free Estimate
+              </a>
               <button
                 onClick={() => {
-                  trackCTAClick('visit_showroom', 'hero')
-                  handleSectionClick('#showroom')
+                  trackKitchenRenovationCTAClick('get_quote', 'hero')
+                  handleScrollToForm()
                 }}
                 className="w-full sm:w-auto px-8 py-4 border-2 border-gold text-gold font-body font-semibold text-lg rounded-lg hover:bg-gold hover:text-navy transition-all duration-300 transform hover:scale-105"
               >
-                Visit Showroom
+                Request Quote Online
               </button>
             </div>
 
-            {/* Trust Badges - Visible immediately */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-cream font-body text-sm md:text-base">
+            {/* Trust Badges */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-cream font-body text-sm md:text-base animate-fade-in">
               <div className="flex items-center gap-2">
                 <span className="text-gold text-xl">⭐⭐⭐⭐⭐</span>
                 <span>5-Star Reviews</span>
@@ -395,5 +356,5 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default KitchenRemodelingHero
 

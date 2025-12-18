@@ -123,3 +123,115 @@ export const trackDirectionsClick = (destination) => {
   })
 }
 
+/**
+ * Track page view
+ * @param {string} pageName - Name/identifier of the page
+ */
+export const trackPageView = (pageName) => {
+  trackEvent({
+    event: 'page_view',
+    page_name: pageName
+  })
+}
+
+/**
+ * Track kitchen renovation page view
+ */
+export const trackKitchenRenovationPageView = () => {
+  trackEvent({
+    event: 'kitchen_renovation_page_view',
+    page_name: 'kitchen_renovation'
+  })
+}
+
+/**
+ * Track kitchen renovation phone click
+ * @param {string} location - Location where phone was clicked
+ */
+export const trackKitchenRenovationPhoneClick = (location) => {
+  trackEvent({
+    event: 'kitchen_renovation_phone_click',
+    click_location: location
+  })
+}
+
+/**
+ * Track kitchen renovation form submit
+ * @param {string} formLocation - Location of the form on the page
+ */
+export const trackKitchenRenovationFormSubmit = (formLocation) => {
+  trackEvent({
+    event: 'kitchen_renovation_form_submit',
+    form_location: formLocation
+  })
+}
+
+/**
+ * Track kitchen renovation gallery view
+ * @param {string} filter - Optional filter applied
+ */
+export const trackKitchenRenovationGalleryView = (filter = null) => {
+  trackEvent({
+    event: 'kitchen_renovation_gallery_view',
+    filter: filter
+  })
+}
+
+/**
+ * Track kitchen renovation CTA click
+ * @param {string} ctaText - Text/identifier of the CTA
+ * @param {string} ctaLocation - Location of the CTA on the page
+ */
+export const trackKitchenRenovationCTAClick = (ctaText, ctaLocation) => {
+  trackEvent({
+    event: 'kitchen_renovation_cta_click',
+    cta_text: ctaText,
+    cta_location: ctaLocation
+  })
+}
+
+/**
+ * Track bathroom renovation page view
+ */
+export const trackBathroomRenovationPageView = () => {
+  trackEvent({
+    event: 'bathroom_renovation_page_view',
+    page_name: 'bathroom_renovation'
+  })
+}
+
+/**
+ * Track bathroom renovation phone click
+ * @param {string} location - Location where phone was clicked
+ */
+export const trackBathroomRenovationPhoneClick = (location) => {
+  trackEvent({
+    event: 'bathroom_renovation_phone_click',
+    click_location: location
+  })
+}
+
+/**
+ * Track bathroom renovation form submit
+ * @param {string} formLocation - Location of the form on the page
+ */
+export const trackBathroomRenovationFormSubmit = (formLocation) => {
+  trackEvent({
+    event: 'bathroom_renovation_form_submit',
+    form_location: formLocation
+  })
+}
+
+/**
+ * Track bathroom renovation CTA click
+ * @param {string} ctaText - Text/identifier of the CTA
+ * @param {string} ctaLocation - Location of the CTA on the page
+ */
+export const trackBathroomRenovationCTAClick = (ctaText, ctaLocation) => {
+  trackEvent({
+    event: 'bathroom_renovation_cta_click',
+    cta_text: ctaText,
+    cta_location: ctaLocation
+  })
+}
+

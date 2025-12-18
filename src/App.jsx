@@ -16,6 +16,9 @@ const Footer = lazy(() => import('./components/Footer'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const TermsOfService = lazy(() => import('./pages/TermsOfService'))
+const KitchenRenovation = lazy(() => import('./pages/KitchenRenovation'))
+const KitchenRenovationV2 = lazy(() => import('./pages/KitchenRenovationV2'))
+const BathroomRenovation = lazy(() => import('./pages/BathroomRenovation'))
 
 const SectionFallback = () => (
   <div className="w-full py-16 md:py-24 animate-pulse bg-cream/30" aria-hidden="true" />
@@ -129,6 +132,30 @@ function App() {
             element={(
               <Suspense fallback={<SectionFallback />}>
                 <TermsOfService />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/kitchen-renovation"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <KitchenRenovation />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/kitchen-renovation-v2"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <KitchenRenovationV2 />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/bathroom-renovation"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <BathroomRenovation />
               </Suspense>
             )}
           />
