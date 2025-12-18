@@ -332,19 +332,19 @@ const Hero = () => {
 
         {/* Main Content - Centered */}
         <div className="flex-1 flex items-center justify-center px-4 lg:px-8 pt-8 md:pt-0">
-          <div className="text-center max-w-5xl mx-auto animate-fade-in">
-            {/* Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-6 leading-tight animate-slide-up">
+          <div className="text-center max-w-5xl mx-auto">
+            {/* Headline - Visible immediately, animation is enhancement only */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-6 leading-tight px-2">
               Transform Your Cape Cod Home with Exquisite Stone Craftsmanship
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-lg md:text-xl lg:text-2xl text-cream mb-12 font-body font-light max-w-4xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            {/* Subheadline - Visible immediately */}
+            <p className="text-lg md:text-xl lg:text-2xl text-cream mb-12 font-body font-light max-w-4xl mx-auto">
               Premium Granite, Marble, Quartz & Quartzite | Expert Installation | Quick Turnaround | Free Estimates
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+            {/* CTA Buttons - Visible immediately */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <button
                 onClick={() => {
                   trackCTAClick('get_free_quote', 'hero')
@@ -365,8 +365,8 @@ const Hero = () => {
               </button>
             </div>
 
-            {/* Trust Badges */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-cream font-body text-sm md:text-base animate-slide-up" style={{ animationDelay: '0.6s' }}>
+            {/* Trust Badges - Visible immediately */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-cream font-body text-sm md:text-base">
               <div className="flex items-center gap-2">
                 <span className="text-gold text-xl">⭐⭐⭐⭐⭐</span>
                 <span>5-Star Reviews</span>
