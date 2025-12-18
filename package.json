@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:analyze": "vite build --mode analyze",
+    "analyze": "source-map-explorer 'dist/assets/*.js' --html bundle-analysis.html",
     "preview": "vite preview"
   },
   "dependencies": {

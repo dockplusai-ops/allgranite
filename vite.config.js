@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     base: '/',
     build: {
-      target: 'es2015',
+      target: 'es2018', // ES2018 suportado por iOS 10.3+, Android 5+ - reduz transpilação e tamanho do bundle
       cssCodeSplit: true,
       sourcemap: enableSourceMap,
       outDir: 'dist',
