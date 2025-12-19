@@ -171,50 +171,79 @@ const KitchenV2Hero = () => {
         </div>
       )}
 
-      {/* Hero Content */}
+      {/* Hero Content - Luxurious Layout */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 lg:px-8 pt-32">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-6 leading-tight">
-            Your Dream Kitchen
-            <span className="block text-gold mt-2" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3)' }}>Starts Here</span>
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-body font-light mb-12 max-w-3xl mx-auto">
-            Complete kitchen renovation in Cape Cod. Premium materials. Expert installation. 7-10 days.
-          </p>
-
-          {/* Primary CTA */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <a
-              href="tel:5083757785"
-              onClick={() => trackKitchenRenovationPhoneClick('hero_primary')}
-              className="group flex items-center gap-3 px-10 py-5 bg-gold text-navy font-body font-bold text-lg md:text-xl rounded-full hover:bg-gold/90 transition-all duration-300 shadow-2xl hover:scale-105 w-full sm:w-auto justify-center"
-            >
-              <Phone className="w-5 h-5 md:w-6 md:h-6" />
-              Call for Free Estimate
-              <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <button
-              onClick={() => {
-                trackKitchenRenovationCTAClick('get_quote', 'hero')
-                handleScrollToForm()
-              }}
-              className="px-10 py-5 border-2 border-white text-white font-body font-bold text-lg md:text-xl rounded-full hover:bg-white hover:text-navy transition-all duration-300 w-full sm:w-auto"
-            >
-              Get Quote Online
-            </button>
-          </div>
-
-          {/* Quick Benefits */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-white/90 font-body text-sm md:text-base">
-            {quickBenefits.map((benefit, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-gold flex-shrink-0" strokeWidth={3} />
-                <span>{benefit}</span>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Content */}
+            <div className="text-center lg:text-left">
+              {/* Luxury badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-gold/30">
+                <div className="w-2 h-2 bg-gold rounded-full" />
+                <span className="text-white font-body text-sm font-semibold uppercase tracking-wider">Premium Design</span>
               </div>
-            ))}
+              
+              {/* Headline */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-6 leading-tight">
+                Your Dream Kitchen
+                <span className="block text-gold mt-2" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3)' }}>Starts Here</span>
+              </h1>
+
+              {/* Subheadline */}
+              <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-body font-light mb-8 max-w-2xl mx-auto lg:mx-0">
+                Complete kitchen renovation in Cape Cod. Premium materials. Expert installation. 7-10 days.
+              </p>
+
+              {/* Primary CTA */}
+              <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-8">
+                <a
+                  href="tel:5083757785"
+                  onClick={() => trackKitchenRenovationPhoneClick('hero_primary')}
+                  className="group flex items-center gap-3 px-10 py-5 bg-gold text-navy font-body font-bold text-lg md:text-xl rounded-full hover:bg-gold/90 transition-all duration-300 shadow-2xl hover:scale-105 w-full sm:w-auto justify-center border-2 border-gold"
+                >
+                  <Phone className="w-5 h-5 md:w-6 md:h-6" />
+                  Call for Free Estimate
+                  <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <button
+                  onClick={() => {
+                    trackKitchenRenovationCTAClick('get_quote', 'hero')
+                    handleScrollToForm()
+                  }}
+                  className="px-10 py-5 border-2 border-white text-white font-body font-bold text-lg md:text-xl rounded-full hover:bg-white hover:text-navy transition-all duration-300 w-full sm:w-auto"
+                >
+                  Get Quote Online
+                </button>
+              </div>
+
+              {/* Quick Benefits - Luxury badges */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                {quickBenefits.map((benefit, index) => (
+                  <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-gold/30">
+                    <Check className="w-4 h-4 text-gold flex-shrink-0" strokeWidth={3} />
+                    <span className="text-white font-body text-sm font-medium">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Side - Premium materials showcase */}
+            <div className="hidden lg:block">
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-gold/30 shadow-2xl">
+                <h3 className="text-white font-display font-bold text-2xl mb-6 text-center">Premium Materials</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {['Granite', 'Quartz', 'Marble', 'Quartzite'].map((material, idx) => (
+                    <div key={idx} className="group cursor-pointer">
+                      <div className="bg-white/10 rounded-xl p-4 border border-gold/20 hover:bg-gold/20 hover:border-gold transition-all duration-300">
+                        <div className="w-full h-20 bg-gradient-to-br from-gold/20 to-amber-500/20 rounded-lg mb-2 border border-gold/30" />
+                        <p className="text-white font-body font-bold text-sm text-center">{material}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-white/70 font-body text-xs text-center mt-4">+ 50+ More Options</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

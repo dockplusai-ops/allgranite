@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Phone, ArrowRight, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { trackBathroomRenovationPhoneClick, trackBathroomRenovationCTAClick, trackPhoneClick } from '../utils/gtm'
+import { trackInteriorPaintingPhoneClick, trackInteriorPaintingCTAClick, trackPhoneClick } from '../utils/gtm'
 
-const BathroomV2Hero = () => {
+const InteriorPaintingV2Hero = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isHeroLoaded, setIsHeroLoaded] = useState(false)
@@ -28,7 +28,7 @@ const BathroomV2Hero = () => {
   }, [isMobileMenuOpen])
 
   const handleScrollToForm = () => {
-    const element = document.querySelector('#bathroom-form')
+    const element = document.querySelector('#interior-painting-form')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -48,8 +48,8 @@ const BathroomV2Hero = () => {
   }
 
   const quickBenefits = [
-    'Free In-Home Consultation',
-    '24-Hour Quote Response',
+    'Premium Paint Quality',
+    'Clean & Professional',
     '15+ Years Experience'
   ]
 
@@ -67,7 +67,7 @@ const BathroomV2Hero = () => {
           <source type="image/webp" srcSet={heroImage.webp.sm} />
           <img
             src={heroImage.webp.sm}
-            alt="Luxury bathroom renovation"
+            alt="Professional interior painting"
             loading="eager"
             fetchpriority="high"
             decoding="async"
@@ -171,35 +171,39 @@ const BathroomV2Hero = () => {
         </div>
       )}
 
-      {/* Hero Content - Spa-like Layout */}
+      {/* Hero Content - Vibrant Layout with Color Swatches */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 lg:px-8 pt-32">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Content */}
             <div className="text-center lg:text-left">
-              {/* Spa badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-cyan-300/30">
-                <div className="w-2 h-2 bg-cyan-300 rounded-full animate-pulse" />
-                <span className="text-white font-body text-sm font-semibold uppercase tracking-wider">Spa Design</span>
+              {/* Colorful badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-6 border border-white/30">
+                <div className="flex gap-1">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <div className="w-3 h-3 rounded-full bg-blue-500" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                </div>
+                <span className="text-white font-body text-sm font-semibold">Modern Colors</span>
               </div>
               
               {/* Headline */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-6 leading-tight">
-                Your Dream Bathroom
-                <span className="block text-cyan-200 mt-2" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3)' }}>Starts Here</span>
+                Professional Interior
+                <span className="block text-gold mt-2" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3)' }}>Painting</span>
               </h1>
 
               {/* Subheadline */}
               <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-body font-light mb-8 max-w-2xl mx-auto lg:mx-0">
-                Complete bathroom renovation in Cape Cod. Premium materials. Expert installation. 7-10 days.
+                Transform your home with premium interior painting. Modern colors, lasting coverage, zero mess.
               </p>
 
               {/* Primary CTA */}
               <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-8">
                 <a
                   href="tel:5083757785"
-                  onClick={() => trackBathroomRenovationPhoneClick('hero_primary')}
-                  className="group flex items-center gap-3 px-10 py-5 bg-cyan-500 text-white font-body font-bold text-lg md:text-xl rounded-full hover:bg-cyan-600 transition-all duration-300 shadow-2xl hover:scale-105 w-full sm:w-auto justify-center border-2 border-cyan-400/50"
+                  onClick={() => trackInteriorPaintingPhoneClick('hero_primary')}
+                  className="group flex items-center gap-3 px-10 py-5 bg-gold text-navy font-body font-bold text-lg md:text-xl rounded-full hover:bg-gold/90 transition-all duration-300 shadow-2xl hover:scale-105 w-full sm:w-auto justify-center"
                 >
                   <Phone className="w-5 h-5 md:w-6 md:h-6" />
                   Call for Free Estimate
@@ -207,7 +211,7 @@ const BathroomV2Hero = () => {
                 </a>
                 <button
                   onClick={() => {
-                    trackBathroomRenovationCTAClick('get_quote', 'hero')
+                    trackInteriorPaintingCTAClick('get_quote', 'hero')
                     handleScrollToForm()
                   }}
                   className="px-10 py-5 border-2 border-white text-white font-body font-bold text-lg md:text-xl rounded-full hover:bg-white hover:text-navy transition-all duration-300 w-full sm:w-auto"
@@ -216,34 +220,54 @@ const BathroomV2Hero = () => {
                 </button>
               </div>
 
-              {/* Quick Benefits - Spa badges */}
+              {/* Quick Benefits - Colorful badges */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
                 {quickBenefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-300/30">
-                    <Check className="w-4 h-4 text-cyan-200 flex-shrink-0" strokeWidth={3} />
+                  <div key={index} className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
+                    <Check className="w-4 h-4 text-gold flex-shrink-0" strokeWidth={3} />
                     <span className="text-white font-body text-sm font-medium">{benefit}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right Side - Spa features showcase */}
+            {/* Right Side - Color Swatches Display */}
             <div className="hidden lg:block">
-              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-cyan-300/30 shadow-2xl">
-                <h3 className="text-white font-display font-bold text-2xl mb-6 text-center">Spa Features</h3>
-                <div className="space-y-4">
-                  {['Rain Shower', 'Soaking Tub', 'Heated Floors', 'Steam Room'].map((feature, idx) => (
-                    <div key={idx} className="flex items-center gap-4 p-4 bg-white/10 rounded-xl border border-cyan-300/20 hover:bg-cyan-500/20 transition-colors">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-400/30 to-blue-400/30 flex items-center justify-center border border-cyan-300/30">
-                        <div className="w-3 h-3 bg-cyan-300 rounded-full" />
-                      </div>
-                      <div>
-                        <p className="text-white font-body font-bold">{feature}</p>
-                        <p className="text-white/70 font-body text-xs">Premium Option</p>
-                      </div>
-                    </div>
-                  ))}
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl">
+                <h3 className="text-white font-display font-bold text-2xl mb-6 text-center">Popular Color Palettes</h3>
+                <div className="grid grid-cols-3 gap-4">
+                  {/* Color swatch 1 */}
+                  <div className="group cursor-pointer">
+                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-slate-200 to-slate-400 mb-2 shadow-lg group-hover:scale-105 transition-transform" />
+                    <p className="text-white/80 font-body text-xs text-center">Modern Gray</p>
+                  </div>
+                  {/* Color swatch 2 */}
+                  <div className="group cursor-pointer">
+                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-100 to-blue-300 mb-2 shadow-lg group-hover:scale-105 transition-transform" />
+                    <p className="text-white/80 font-body text-xs text-center">Coastal Blue</p>
+                  </div>
+                  {/* Color swatch 3 */}
+                  <div className="group cursor-pointer">
+                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-amber-100 to-amber-300 mb-2 shadow-lg group-hover:scale-105 transition-transform" />
+                    <p className="text-white/80 font-body text-xs text-center">Warm Beige</p>
+                  </div>
+                  {/* Color swatch 4 */}
+                  <div className="group cursor-pointer">
+                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-green-100 to-green-300 mb-2 shadow-lg group-hover:scale-105 transition-transform" />
+                    <p className="text-white/80 font-body text-xs text-center">Sage Green</p>
+                  </div>
+                  {/* Color swatch 5 */}
+                  <div className="group cursor-pointer">
+                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-purple-100 to-purple-300 mb-2 shadow-lg group-hover:scale-105 transition-transform" />
+                    <p className="text-white/80 font-body text-xs text-center">Lavender</p>
+                  </div>
+                  {/* Color swatch 6 */}
+                  <div className="group cursor-pointer">
+                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-rose-100 to-rose-300 mb-2 shadow-lg group-hover:scale-105 transition-transform" />
+                    <p className="text-white/80 font-body text-xs text-center">Blush Pink</p>
+                  </div>
                 </div>
+                <p className="text-white/70 font-body text-xs text-center mt-4">+ 50+ More Colors Available</p>
               </div>
             </div>
           </div>
@@ -253,5 +277,5 @@ const BathroomV2Hero = () => {
   )
 }
 
-export default BathroomV2Hero
+export default InteriorPaintingV2Hero
 

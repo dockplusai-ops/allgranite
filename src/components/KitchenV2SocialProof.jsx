@@ -37,30 +37,41 @@ const KitchenV2SocialProof = () => {
   }
 
   return (
-    <section className="w-full py-20 md:py-32 px-4 lg:px-8 bg-cream">
-      <div className="max-w-7xl mx-auto">
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+    <section className="w-full py-20 md:py-32 px-4 lg:px-8 bg-gradient-to-b from-cream via-white to-cream relative overflow-hidden">
+      {/* Luxurious background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-20 w-64 h-64 border-4 border-gold rounded-full" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 border-4 border-gold/50 rounded-full" />
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Stats - Luxurious cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-navy mb-2">
-                {stat.number}
-              </div>
-              <div className="text-gray-600 font-body text-sm md:text-base">
-                {stat.label}
+            <div key={index} className="text-center group">
+              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-gold/20 bg-gradient-to-br from-white to-gold/5">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-display font-bold bg-gradient-to-br from-navy via-gold to-navy bg-clip-text text-transparent mb-3">
+                  {stat.number}
+                </div>
+                <div className="text-gray-600 font-body text-sm md:text-base font-medium">
+                  {stat.label}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Testimonials */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-navy mb-4">
+        {/* Testimonials - Luxurious layout */}
+        <div className="text-center mb-16">
+          <div className="inline-block px-6 py-2 bg-gradient-to-r from-gold/20 to-amber-500/20 rounded-full mb-6 border-2 border-gold/30">
+            <span className="text-gold font-body font-bold text-sm uppercase tracking-wider">Testimonials</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-navy mb-6">
             What Our Customers Say
           </h2>
-          <div className="flex items-center justify-center gap-1 mb-8">
+          <div className="flex items-center justify-center gap-2 mb-8">
             {renderStars(5)}
-            <span className="ml-2 text-gray-600 font-body">4.9/5 from 200+ reviews</span>
+            <span className="ml-2 text-gray-600 font-body font-medium">4.9/5 from 200+ reviews</span>
           </div>
         </div>
 
@@ -68,20 +79,29 @@ const KitchenV2SocialProof = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg"
+              className="bg-white rounded-3xl p-8 shadow-2xl hover:shadow-[0_20px_60px_rgba(212,175,55,0.3)] transition-all duration-500 transform hover:-translate-y-2 border-2 border-gold/20 relative overflow-hidden group bg-gradient-to-br from-white to-gold/5"
             >
-              <div className="flex gap-1 mb-4">
-                {renderStars(testimonial.rating)}
-              </div>
-              <p className="text-gray-700 font-body text-lg leading-relaxed mb-6 italic">
-                "{testimonial.quote}"
-              </p>
-              <div className="border-t border-gray-200 pt-6">
-                <div className="font-body font-bold text-navy">
-                  {testimonial.name}
+              {/* Gold accent stripe */}
+              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-gold via-amber-400 to-gold" />
+              
+              {/* Gold corner decoration */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gold/20 to-transparent rounded-bl-full" />
+              
+              <div className="relative z-10">
+                <div className="flex gap-1 mb-6">
+                  {renderStars(testimonial.rating)}
                 </div>
-                <div className="font-body text-sm text-gray-600">
-                  {testimonial.location}
+                <p className="text-gray-700 font-body text-lg leading-relaxed mb-8 italic relative">
+                  <span className="absolute -top-2 -left-2 text-6xl text-gold/10 font-display">"</span>
+                  <span className="relative z-10">{testimonial.quote}</span>
+                </p>
+                <div className="border-t-2 border-gold/20 pt-6">
+                  <div className="font-body font-bold text-navy text-lg">
+                    {testimonial.name}
+                  </div>
+                  <div className="font-body text-sm text-gray-500 mt-1">
+                    {testimonial.location}
+                  </div>
                 </div>
               </div>
             </div>

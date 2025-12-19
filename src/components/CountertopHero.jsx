@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Phone, ArrowRight, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { trackBathroomRenovationPhoneClick, trackBathroomRenovationCTAClick, trackPhoneClick } from '../utils/gtm'
+import { trackCountertopServicePhoneClick, trackCountertopServiceCTAClick, trackPhoneClick } from '../utils/gtm'
 
-const BathroomV2Hero = () => {
+const CountertopHero = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isHeroLoaded, setIsHeroLoaded] = useState(false)
@@ -28,23 +28,21 @@ const BathroomV2Hero = () => {
   }, [isMobileMenuOpen])
 
   const handleScrollToForm = () => {
-    const element = document.querySelector('#bathroom-form')
+    const element = document.querySelector('#countertop-form')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
+  // Hero image - Modern kitchen with dark countertops
+  // Using image from public folder
   const heroImage = {
-    avif: {
-      xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_80,w_1920/v1762535831/1_o5smft.webp',
-      md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_75,w_1200/v1762535831/1_o5smft.webp',
-      sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_avif,q_70,w_800/v1762535831/1_o5smft.webp'
-    },
     webp: {
-      xl: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_80,w_1920/v1762535831/1_o5smft.webp',
-      md: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_75,w_1200/v1762535831/1_o5smft.webp',
-      sm: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/f_webp,q_70,w_800/v1762535831/1_o5smft.webp'
-    }
+      xl: '/Kitchen Countertop Materials.webp',
+      md: '/Kitchen Countertop Materials.webp',
+      sm: '/Kitchen Countertop Materials.webp'
+    },
+    fallback: '/Kitchen Countertop Materials.webp'
   }
 
   const quickBenefits = [
@@ -59,15 +57,12 @@ const BathroomV2Hero = () => {
       <div className="absolute inset-0 z-0">
         <div className={`absolute inset-0 bg-navy/60 transition-opacity duration-700 ${isHeroLoaded ? 'opacity-100' : 'opacity-0'}`} />
         <picture className={`absolute inset-0 transition-opacity duration-700 ${isHeroLoaded ? 'opacity-100' : 'opacity-0'}`}>
-          <source type="image/avif" media="(min-width: 1024px)" srcSet={heroImage.avif.xl} />
-          <source type="image/avif" media="(min-width: 768px)" srcSet={heroImage.avif.md} />
-          <source type="image/avif" srcSet={heroImage.avif.sm} />
           <source type="image/webp" media="(min-width: 1024px)" srcSet={heroImage.webp.xl} />
           <source type="image/webp" media="(min-width: 768px)" srcSet={heroImage.webp.md} />
           <source type="image/webp" srcSet={heroImage.webp.sm} />
           <img
-            src={heroImage.webp.sm}
-            alt="Luxury bathroom renovation"
+            src={heroImage.fallback}
+            alt="Modern kitchen with premium dark countertops - Cape Cod countertop installation"
             loading="eager"
             fetchpriority="high"
             decoding="async"
@@ -171,81 +166,50 @@ const BathroomV2Hero = () => {
         </div>
       )}
 
-      {/* Hero Content - Spa-like Layout */}
+      {/* Hero Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 lg:px-8 pt-32">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Content */}
-            <div className="text-center lg:text-left">
-              {/* Spa badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-cyan-300/30">
-                <div className="w-2 h-2 bg-cyan-300 rounded-full animate-pulse" />
-                <span className="text-white font-body text-sm font-semibold uppercase tracking-wider">Spa Design</span>
-              </div>
-              
-              {/* Headline */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-6 leading-tight">
-                Your Dream Bathroom
-                <span className="block text-cyan-200 mt-2" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3)' }}>Starts Here</span>
-              </h1>
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Headline */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-6 leading-tight">
+            Premium Countertops
+            <span className="block text-gold mt-2" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3)' }}>For Your Home</span>
+          </h1>
 
-              {/* Subheadline */}
-              <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-body font-light mb-8 max-w-2xl mx-auto lg:mx-0">
-                Complete bathroom renovation in Cape Cod. Premium materials. Expert installation. 7-10 days.
-              </p>
+          {/* Subheadline */}
+          <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-body font-light mb-12 max-w-3xl mx-auto">
+            Expert countertop installation for kitchen and bathroom. Premium materials. Professional installation. Cape Cod's trusted choice.
+          </p>
 
-              {/* Primary CTA */}
-              <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-8">
-                <a
-                  href="tel:5083757785"
-                  onClick={() => trackBathroomRenovationPhoneClick('hero_primary')}
-                  className="group flex items-center gap-3 px-10 py-5 bg-cyan-500 text-white font-body font-bold text-lg md:text-xl rounded-full hover:bg-cyan-600 transition-all duration-300 shadow-2xl hover:scale-105 w-full sm:w-auto justify-center border-2 border-cyan-400/50"
-                >
-                  <Phone className="w-5 h-5 md:w-6 md:h-6" />
-                  Call for Free Estimate
-                  <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <button
-                  onClick={() => {
-                    trackBathroomRenovationCTAClick('get_quote', 'hero')
-                    handleScrollToForm()
-                  }}
-                  className="px-10 py-5 border-2 border-white text-white font-body font-bold text-lg md:text-xl rounded-full hover:bg-white hover:text-navy transition-all duration-300 w-full sm:w-auto"
-                >
-                  Get Quote Online
-                </button>
-              </div>
+          {/* Primary CTA */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <a
+              href="tel:5083757785"
+              onClick={() => trackCountertopServicePhoneClick('hero_primary')}
+              className="group flex items-center gap-3 px-10 py-5 bg-gold text-navy font-body font-bold text-lg md:text-xl rounded-full hover:bg-gold/90 transition-all duration-300 shadow-2xl hover:scale-105 w-full sm:w-auto justify-center"
+            >
+              <Phone className="w-5 h-5 md:w-6 md:h-6" />
+              Call for Free Estimate
+              <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <button
+              onClick={() => {
+                trackCountertopServiceCTAClick('get_quote', 'hero')
+                handleScrollToForm()
+              }}
+              className="px-10 py-5 border-2 border-white text-white font-body font-bold text-lg md:text-xl rounded-full hover:bg-white hover:text-navy transition-all duration-300 w-full sm:w-auto"
+            >
+              Get Quote Online
+            </button>
+          </div>
 
-              {/* Quick Benefits - Spa badges */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                {quickBenefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-300/30">
-                    <Check className="w-4 h-4 text-cyan-200 flex-shrink-0" strokeWidth={3} />
-                    <span className="text-white font-body text-sm font-medium">{benefit}</span>
-                  </div>
-                ))}
+          {/* Quick Benefits */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-white/90 font-body text-sm md:text-base">
+            {quickBenefits.map((benefit, index) => (
+              <div key={index} className="flex items-center gap-2">
+                <Check className="w-5 h-5 text-gold flex-shrink-0" strokeWidth={3} />
+                <span>{benefit}</span>
               </div>
-            </div>
-
-            {/* Right Side - Spa features showcase */}
-            <div className="hidden lg:block">
-              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-cyan-300/30 shadow-2xl">
-                <h3 className="text-white font-display font-bold text-2xl mb-6 text-center">Spa Features</h3>
-                <div className="space-y-4">
-                  {['Rain Shower', 'Soaking Tub', 'Heated Floors', 'Steam Room'].map((feature, idx) => (
-                    <div key={idx} className="flex items-center gap-4 p-4 bg-white/10 rounded-xl border border-cyan-300/20 hover:bg-cyan-500/20 transition-colors">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-400/30 to-blue-400/30 flex items-center justify-center border border-cyan-300/30">
-                        <div className="w-3 h-3 bg-cyan-300 rounded-full" />
-                      </div>
-                      <div>
-                        <p className="text-white font-body font-bold">{feature}</p>
-                        <p className="text-white/70 font-body text-xs">Premium Option</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -253,5 +217,5 @@ const BathroomV2Hero = () => {
   )
 }
 
-export default BathroomV2Hero
+export default CountertopHero
 

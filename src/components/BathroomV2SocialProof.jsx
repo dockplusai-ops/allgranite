@@ -37,55 +37,90 @@ const BathroomV2SocialProof = () => {
   }
 
   return (
-    <section className="w-full py-20 md:py-32 px-4 lg:px-8 bg-cream">
-      <div className="max-w-7xl mx-auto">
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+    <section className="w-full py-20 md:py-32 px-4 lg:px-8 bg-gradient-to-b from-cream via-cyan-50/10 to-cream relative overflow-hidden">
+      {/* Water wave background */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full" style={{
+          backgroundImage: `radial-gradient(ellipse at 30% 40%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                           radial-gradient(ellipse at 70% 60%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`
+        }} />
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Stats - Spa-like cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-navy mb-2">
-                {stat.number}
-              </div>
-              <div className="text-gray-600 font-body text-sm md:text-base">
-                {stat.label}
+            <div key={index} className="text-center group">
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-cyan-100 bg-gradient-to-br from-white to-cyan-50/30">
+                <div className={`text-5xl md:text-6xl lg:text-7xl font-display font-bold bg-gradient-to-br ${
+                  index === 0 ? 'from-cyan-600 to-blue-600' :
+                  index === 1 ? 'from-teal-600 to-cyan-600' :
+                  index === 2 ? 'from-blue-600 to-indigo-600' :
+                  'from-cyan-500 to-teal-500'
+                } bg-clip-text text-transparent mb-3`}>
+                  {stat.number}
+                </div>
+                <div className="text-gray-600 font-body text-sm md:text-base font-medium">
+                  {stat.label}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Testimonials */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-navy mb-4">
+        {/* Testimonials - Spa-like layout */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-6 py-2 bg-cyan-100/50 rounded-full mb-6 border border-cyan-200/50">
+            <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
+            <span className="text-cyan-700 font-body font-bold text-sm uppercase tracking-wider">Testimonials</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-navy mb-6">
             What Our Customers Say
           </h2>
-          <div className="flex items-center justify-center gap-1 mb-8">
+          <div className="flex items-center justify-center gap-2 mb-8">
             {renderStars(5)}
-            <span className="ml-2 text-gray-600 font-body">4.9/5 from 180+ reviews</span>
+            <span className="ml-2 text-gray-600 font-body font-medium">4.9/5 from 180+ reviews</span>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <div className="flex gap-1 mb-4">
-                {renderStars(testimonial.rating)}
-              </div>
-              <p className="text-gray-700 font-body text-lg leading-relaxed mb-6 italic">
-                "{testimonial.quote}"
-              </p>
-              <div className="border-t border-gray-200 pt-6">
-                <div className="font-body font-bold text-navy">
-                  {testimonial.name}
+          {testimonials.map((testimonial, index) => {
+            const waterGradients = [
+              'from-cyan-400 to-blue-400',
+              'from-teal-400 to-cyan-400',
+              'from-blue-400 to-indigo-400'
+            ]
+            return (
+              <div
+                key={index}
+                className={`bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-cyan-100 relative overflow-hidden group bg-gradient-to-br from-white to-cyan-50/20`}
+              >
+                {/* Water wave accent */}
+                <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${waterGradients[index]} opacity-60`} />
+                
+                {/* Ripple decoration */}
+                <div className="absolute top-2 right-2 w-20 h-20 bg-cyan-200/20 rounded-full blur-xl" />
+                
+                <div className="relative z-10">
+                  <div className="flex gap-1 mb-6">
+                    {renderStars(testimonial.rating)}
+                  </div>
+                  <p className="text-gray-700 font-body text-lg leading-relaxed mb-8 italic relative">
+                    <span className={`absolute -top-2 -left-2 text-6xl bg-gradient-to-br ${waterGradients[index]} bg-clip-text text-transparent opacity-20 font-display`}>"</span>
+                    <span className="relative z-10">{testimonial.quote}</span>
+                  </p>
+                  <div className="border-t-2 border-cyan-100 pt-6">
+                    <div className="font-body font-bold text-navy text-lg">
+                      {testimonial.name}
+                    </div>
+                    <div className="font-body text-sm text-gray-500 mt-1">
+                      {testimonial.location}
+                    </div>
+                  </div>
                 </div>
-                <div className="font-body text-sm text-gray-600">
-                  {testimonial.location}
-                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

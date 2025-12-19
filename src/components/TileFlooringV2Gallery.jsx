@@ -2,33 +2,33 @@ import React, { useState, useCallback } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { trackEvent } from '../utils/gtm'
 
-const KitchenV2Gallery = () => {
+const TileFlooringV2Gallery = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState(0)
 
   const projects = [
     {
       id: 1,
-      title: 'Modern White Kitchen',
-      material: 'White Quartzite',
+      title: 'Premium Tile Installation',
+      material: 'Expert Craftsmanship',
       image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/8_rv8xux.webp'
     },
     {
       id: 2,
-      title: 'Classic Granite Kitchen',
-      material: 'Premium Granite',
+      title: 'Modern Flooring',
+      material: 'Professional Installation',
       image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/9_iqshcr.webp'
     },
     {
       id: 3,
-      title: 'Luxury Marble Kitchen',
-      material: 'Carrara Marble',
+      title: 'Bathroom Tile',
+      material: 'Premium Materials',
       image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535826/10_s51dlw.webp'
     },
     {
       id: 4,
-      title: 'Contemporary Quartz',
-      material: 'Premium Quartz',
+      title: 'Kitchen Flooring',
+      material: 'Durable Finish',
       image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535825/11_ew0tqd.webp'
     }
   ]
@@ -37,7 +37,7 @@ const KitchenV2Gallery = () => {
     setSelectedImage(index)
     setLightboxOpen(true)
     trackEvent({
-      event: 'kitchen_renovation_gallery_view',
+      event: 'tile_flooring_gallery_view',
       image_index: index,
       project_title: projects[index].title
     })
@@ -69,33 +69,45 @@ const KitchenV2Gallery = () => {
 
   return (
     <>
-      <section className="w-full py-20 md:py-32 px-4 lg:px-8 bg-gradient-to-b from-white via-gray-50/20 to-white relative overflow-hidden">
-        {/* Luxurious decorative elements */}
+      <section className="w-full py-20 md:py-32 px-4 lg:px-8 bg-white relative overflow-hidden">
+        {/* Geometric tile pattern background */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 right-20 w-96 h-96 border-4 border-gold rounded-full" />
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(22, 33, 62, 0.1) 60px, rgba(22, 33, 62, 0.1) 62px),
+              repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(22, 33, 62, 0.1) 60px, rgba(22, 33, 62, 0.1) 62px)
+            `
+          }} />
         </div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-gradient-to-r from-gold/20 to-amber-500/20 rounded-full mb-6 border-2 border-gold/30">
-              <span className="text-gold font-body font-bold text-sm uppercase tracking-wider">Portfolio</span>
+            <div className="inline-block px-6 py-2 bg-navy/5 rounded-lg mb-6 border-2 border-navy/10">
+              <span className="text-navy font-body font-bold text-sm uppercase tracking-wider">Portfolio</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-navy mb-6">
               Our Recent Work
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 font-body max-w-3xl mx-auto leading-relaxed">
-              See the luxurious kitchen transformations we've created for Cape Cod families
+              See the tile and flooring installations we've completed for Cape Cod families
             </p>
           </div>
 
-          {/* Luxurious grid layout */}
+          {/* Geometric grid layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="group relative overflow-hidden rounded-3xl cursor-pointer aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-gold/20"
+                className="group relative overflow-hidden rounded-2xl cursor-pointer aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-gray-200"
                 onClick={() => openLightbox(index)}
               >
+                {/* Geometric overlay pattern */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300" style={{
+                  backgroundImage: `
+                    repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.1) 20px, rgba(255,255,255,0.1) 22px)
+                  `
+                }} />
+                
                 <picture>
                   <source 
                     type="image/avif" 
@@ -113,19 +125,22 @@ const KitchenV2Gallery = () => {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </picture>
-                {/* Gold accent stripe */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold via-amber-400 to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                {/* Luxurious overlay */}
+                {/* Geometric overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <div className="inline-block px-3 py-1 bg-gold/20 backdrop-blur-sm rounded-full mb-3 border border-gold/30">
+                    {/* Geometric badge */}
+                    <div className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-lg mb-3 border border-white/30">
                       <span className="text-white font-body text-xs font-semibold uppercase">{project.material}</span>
                     </div>
                     <h3 className="text-white font-display font-bold text-2xl md:text-3xl mb-2">
                       {project.title}
                     </h3>
-                    <div className="w-12 h-1 bg-gold rounded-full" />
+                    {/* Geometric accent line */}
+                    <div className="flex gap-1">
+                      <div className="w-8 h-1 bg-gold rounded-full" />
+                      <div className="w-4 h-1 bg-gold/50 rounded-full" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -182,5 +197,5 @@ const KitchenV2Gallery = () => {
   )
 }
 
-export default KitchenV2Gallery
+export default TileFlooringV2Gallery
 

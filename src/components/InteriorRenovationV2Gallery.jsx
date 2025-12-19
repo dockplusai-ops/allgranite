@@ -2,33 +2,33 @@ import React, { useState, useCallback } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { trackEvent } from '../utils/gtm'
 
-const KitchenV2Gallery = () => {
+const InteriorRenovationV2Gallery = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState(0)
 
   const projects = [
     {
       id: 1,
-      title: 'Modern White Kitchen',
-      material: 'White Quartzite',
+      title: 'Modern Living Room',
+      material: 'Complete Renovation',
       image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/8_rv8xux.webp'
     },
     {
       id: 2,
-      title: 'Classic Granite Kitchen',
-      material: 'Premium Granite',
+      title: 'Elegant Dining Space',
+      material: 'Interior Design',
       image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535827/9_iqshcr.webp'
     },
     {
       id: 3,
-      title: 'Luxury Marble Kitchen',
-      material: 'Carrara Marble',
+      title: 'Contemporary Home',
+      material: 'Full Renovation',
       image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535826/10_s51dlw.webp'
     },
     {
       id: 4,
-      title: 'Contemporary Quartz',
-      material: 'Premium Quartz',
+      title: 'Luxury Interior',
+      material: 'Premium Design',
       image: 'https://res.cloudinary.com/dhrxy4yo0/image/upload/v1762535825/11_ew0tqd.webp'
     }
   ]
@@ -37,7 +37,7 @@ const KitchenV2Gallery = () => {
     setSelectedImage(index)
     setLightboxOpen(true)
     trackEvent({
-      event: 'kitchen_renovation_gallery_view',
+      event: 'interior_renovation_gallery_view',
       image_index: index,
       project_title: projects[index].title
     })
@@ -69,31 +69,30 @@ const KitchenV2Gallery = () => {
 
   return (
     <>
-      <section className="w-full py-20 md:py-32 px-4 lg:px-8 bg-gradient-to-b from-white via-gray-50/20 to-white relative overflow-hidden">
-        {/* Luxurious decorative elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 right-20 w-96 h-96 border-4 border-gold rounded-full" />
-        </div>
+      <section className="w-full py-20 md:py-32 px-4 lg:px-8 bg-gradient-to-b from-white via-cream/20 to-white relative overflow-hidden">
+        {/* Elegant decorative elements */}
+        <div className="absolute top-20 right-0 w-72 h-72 bg-gold/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-gradient-to-r from-gold/20 to-amber-500/20 rounded-full mb-6 border-2 border-gold/30">
+            <div className="inline-block px-6 py-2 bg-gold/10 rounded-full mb-6">
               <span className="text-gold font-body font-bold text-sm uppercase tracking-wider">Portfolio</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-navy mb-6">
               Our Recent Work
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 font-body max-w-3xl mx-auto leading-relaxed">
-              See the luxurious kitchen transformations we've created for Cape Cod families
+              See the elegant interior transformations we've created for Cape Cod families
             </p>
           </div>
 
-          {/* Luxurious grid layout */}
+          {/* Elegant masonry-style grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="group relative overflow-hidden rounded-3xl cursor-pointer aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-gold/20"
+                className="group relative overflow-hidden rounded-3xl cursor-pointer aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
                 onClick={() => openLightbox(index)}
               >
                 <picture>
@@ -113,11 +112,9 @@ const KitchenV2Gallery = () => {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </picture>
-                {/* Gold accent stripe */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold via-amber-400 to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                {/* Luxurious overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                {/* Elegant overlay with gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <div className="inline-block px-3 py-1 bg-gold/20 backdrop-blur-sm rounded-full mb-3 border border-gold/30">
                       <span className="text-white font-body text-xs font-semibold uppercase">{project.material}</span>
@@ -182,5 +179,5 @@ const KitchenV2Gallery = () => {
   )
 }
 
-export default KitchenV2Gallery
+export default InteriorRenovationV2Gallery
 

@@ -19,6 +19,13 @@ const TermsOfService = lazy(() => import('./pages/TermsOfService'))
 const KitchenRenovation = lazy(() => import('./pages/KitchenRenovation'))
 const KitchenRenovationV2 = lazy(() => import('./pages/KitchenRenovationV2'))
 const BathroomRenovation = lazy(() => import('./pages/BathroomRenovation'))
+const CountertopService = lazy(() => import('./pages/CountertopService'))
+const InteriorRenovation = lazy(() => import('./pages/InteriorRenovation'))
+const InteriorPainting = lazy(() => import('./pages/InteriorPainting'))
+const InteriorCarpentry = lazy(() => import('./pages/InteriorCarpentry'))
+const TileFlooring = lazy(() => import('./pages/TileFlooring'))
+const BasementRenovation = lazy(() => import('./pages/BasementRenovation'))
+const WindowsReplacement = lazy(() => import('./pages/WindowsReplacement'))
 
 const SectionFallback = () => (
   <div className="w-full py-16 md:py-24 animate-pulse bg-cream/30" aria-hidden="true" />
@@ -156,6 +163,62 @@ function App() {
             element={(
               <Suspense fallback={<SectionFallback />}>
                 <BathroomRenovation />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/countertop-service"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <CountertopService />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/interior-renovation"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <InteriorRenovation />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/interior-painting"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <InteriorPainting />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/interior-carpentry"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <InteriorCarpentry />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/tile-flooring"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <TileFlooring />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/basement-renovation"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <BasementRenovation />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/windows-replacement"
+            element={(
+              <Suspense fallback={<SectionFallback />}>
+                <WindowsReplacement />
               </Suspense>
             )}
           />
